@@ -1,0 +1,65 @@
+{
+  "templates": [
+    "grabs {user} and {spank} them {xtimes} times with {item}."
+  ],
+  "parts": {
+    "spank": [
+      "paddles",
+      "spanks",
+      "whips",
+      "lashes",
+      "straps",
+      "smacks",
+      "wallops",
+      "throttles",
+      "hammers",
+      "flogs",
+      "belts",
+      "clobbers",
+      "thrashes",
+      "lambastes",
+      "thumps",
+      "slugs",
+      "lashes",
+      "strikes",
+      "crushes",
+      "mauls",
+      "clubs",
+      "pummels",
+      "pounds"
+    ],
+    "xtimes": [
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine",
+      "ten"
+     ],
+    "item": [
+      "a riding crop",
+      "a wooden spoon",
+      "a leather flogger",
+      "a wooden paddle",
+      "a wooden cane",
+      "a hickory tree switch",
+      "a feather duster",
+      "a cat o' nine tails",
+      "a leather belt",
+      "an open hand",
+      "a boat anchor",
+      "a sack of dicks",
+      "a used dildo",
+      "a crusty sock",
+      "a box of mudkips",
+      "an anvil",
+      "a used butt plug",
+      "a dead rodent",
+      "a Dell tower",
+      "a MacBook Pro"
+    ]
+   }
+}

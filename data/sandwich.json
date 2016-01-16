@@ -1,0 +1,98 @@
+{
+  "templates": [
+    "{gives} {user} {flavor} {meat} and {meat} {type} with {salad} and {sauce}!",
+    "{gives} {user} {flavor} {meat} and {meat} {type} with {salad}, {salad}, and {sauce}!",
+    "{gives} {user} {flavor} {meat} and {meat} {type} with {salad}, {salad}, {salad}, and {sauce}!",
+    "{gives} {user} {flavor} {meat} {type} with {salad} and {sauce}!",
+    "{gives} {user} {flavor} {meat} {type} with {salad}, {salad}, and {sauce}!",
+    "{gives} {user} {flavor} {meat} {type} with {salad}, {salad}, {salad}, and {sauce}!"
+  ],
+  "parts": {
+    "gives": [
+      "hands",
+      "gives",
+      "makes",
+      "passes",
+      "serves",
+      "provides"
+    ],
+    "flavor": [
+      "a tasty",
+      "a delicious",
+      "an awesome",
+      "an excellent",
+      "a beautifully-made",
+      "a savory"
+    ],
+    "meat": [
+      "ham",
+      "salami",
+      "steak",
+      "meatball",
+      "tuna",
+      "pork",
+      "chicken",
+      "roast beef",
+      "corned beef",
+      "pastrami",
+      "turkey",
+      "grouper",
+      "bacon, lettuce and tomato",
+      "egg and ham",
+      "egg and sausge",
+      "cheesesteak",
+      "lamb"
+    ],
+    "type": [
+      "roll",
+      "wrap",
+      "pita",
+      "sandwich",
+      "bun",
+      "croissant",
+      "rye bread",
+      "pumpernickle",
+      "9 grain",
+      "potato bread",
+      "whole wheat",
+      "cuban bread",
+      "sourdough",
+      "focaccia bread",
+      "hawaiian sweet bread",
+      "ciabatta",
+      "fougasse",
+      "italian bread",
+      "miche",
+      "pullman loaf",
+      "pupusa",
+      "spelt",
+      "tortilla"
+    ],
+    "salad": [
+      "tomatoes",
+      "lettuce",
+      "pickles",
+      "cucumbers",
+      "red onions",
+      "jalapenos",
+      "arugula",
+      "mesclun",
+      "romaine hearts",
+      "avocado"
+    ],
+    "sauce":[
+      "sweet onion sauce",
+      "honey mustard sauce",
+      "mayo",
+      "sweet chili sauce",
+      "italian sauce",
+      "ranch dressing",
+      "barbecue sauce",
+      "chipolte mayo",
+      "pesto",
+      "wasabi mayo",
+      "cherry pepper relish",
+      "tapenade"
+    ]
+  }
+}

@@ -1,0 +1,161 @@
+{
+"templates": [
+  "{presentations} {user} {flavors} {sizes} {crusts} {styles} pizza topped with {meats} and {veggies} and {more veggies} and {even more veggies} with a side order of {dipping sauces} and {sides} that {replies}!",
+  "{presentations} {user} {flavors} {sizes} {crusts} {meats} pizza topped with {veggie combos} and a side order of {sides}!",
+  "{presentations} {user} {flavors} personal size {crusts} {meats} pizza topped with {veggie combos} and a side order of {sides} and {dipping sauces}!",
+  "{presentations} {user} {flavors} {sizes} {crusts} {meats} pizza topped with {veggie combos} with a side order of {dipping sauces}!",
+  "{presentations} {user} {flavors} {sizes} {crusts} {styles} pizza topped with {meats} and {more veggies} and {even more veggies}!",
+  "{presentations} {user} {flavors} {sizes} {crusts} {styles} pizza topped with {meats} and {more veggies} with a side order of {dipping sauces}!",
+  "{presentations} {user} {flavors} huge slice of {meats} with {veggie combos} and a side order of {sides}!",
+  "{presentations} {user} {flavors} {sizes} {crusts} {breakfast meats} pizza topped with {breakfast toppings} and {breakfast toppings}!",
+  "{presentations} {user} {flavors} personal size {breakfast meats} pizza topped with {breakfast toppings} and {breakfast toppings}!",
+  "{presentations} {user} {flavors} huge slice of {breakfast meats} pizza!"
+],
+"parts": {
+  "presentations": [
+    "gives",
+    "makes",
+    "passes",
+    "serves"
+],
+"flavors": [
+  "a tasty",
+  "a delicious",
+  "an awesome",
+  "an excellent",
+  "a flavorful",
+  "a savory",
+  "a scrumptious"
+],
+"sizes": [
+  "10 inch",
+  "12 inch",
+  "14 inch",
+  "16 inch",
+  "20 inch",
+  "personal size",
+  "huge slice of"
+],
+"crusts": [
+  "thin crust",
+  "thick crust",
+  "deep dish",
+  "pretzel crust",
+  "cheese stuffed crust",
+  "tortilla crust"
+],
+"styles": [
+  "neapolitan",
+  "sicilian",
+  "chicago",
+  "new york",
+  "greek",
+  "california",
+  "ohio valley",
+  "brick oven"
+],
+"meats": [
+  "ham",
+  "steak",
+  "pork",
+  "chicken",
+  "roast beef",
+  "pastrami",
+  "sausage",
+  "turkey",
+  "pepperoni",
+  "cheesesteak",
+  "lamb",
+  "bbq chicken",
+  "ham and pineapple",
+  "shrimp and pineapple",
+  "bacon",
+  "chorizo",
+  "italian sausage",
+  "salami",
+  "sausage and pistachio",
+  "bacon and ham",
+  "turkey and bacon",
+  "sausage and pepperoni"
+],
+"breakfast meats": [
+  "eggs and sausage",
+  "eggs and bacon",
+  "eggs and ham",
+  "eggs and pepper bacon"
+],  
+"breakfast toppings": [
+  "cheddar cheese",
+  "spinach",
+  "roasted tomatoes",
+  "hash browns",
+  "diced mushrooms",
+  "green sweet peppers"
+],  
+"veggies": [
+  "avocado",
+  "artichoke hearts",
+  "capers",
+  "eggplant",
+  "green peppers"
+],
+"more veggies": [
+  "tomatoes",
+  "cucumbers",
+  "black olives",
+  "mushrooms",
+  "sundried tomatoes",
+  "spinach"
+],
+"even more veggies": [
+  "red onions",
+  "vidalia onions",
+  "jalapenos",
+  "anchovies",
+  "banana peppers",
+  "roasted red peppers"
+],
+"veggie combos": [
+  "banana peppers cucumbers and capers",
+  "onions tomatoes mushrooms and black olives",
+  "jalapenos diced tomatoes and mushrooms",
+  "anchovies spinach and roasted red peppers",
+  "sun dried tomatoes banana peppers and black olives",
+  "mushrooms and spinach",
+  "avacado and sweet green peppers"
+],
+"dipping sauces": [
+  "sweet onion sauce",
+  "honey mustard sauce",
+  "sweet chili sauce",
+  "italian sauce",
+  "ranch dressing",
+  "barbecue sauce",
+  "chipolte mayo",
+  "pesto",
+  "wasabi mayo",
+  "cherry pepper relish",
+  "tapenade",
+  "basil pesto",
+  "sweet mango habanero sauce",
+  "garlic and butter sauce",
+  "marinara sauce",
+  "blue cheese dressing"
+],
+"sides": [
+  "honey bbq wings",
+  "garlic knots",
+  "bone out wings slathered in spank my ass and call me sally sauce",
+  "breaded chicken strips",
+  "parmesan bread sticks",
+  "cheese filled bread sticks with spicy sriracha sauce",
+  "jalapeno cheese filled potato balls"
+],
+"replies": [
+  "would make you slap your own mother",
+  "came straight out of flavortown",
+  "would make you burn down your local pizzaria",
+  "would make you lie and tell your friends you made it yourself"
+  ] 
+ }
+}
