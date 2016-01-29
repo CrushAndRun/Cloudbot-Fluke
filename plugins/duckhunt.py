@@ -81,7 +81,7 @@ def start_hunt(bot, chan, message, conn):
     else:
         game_status[conn.name][chan]['game_on'] = 1
     set_ducktime(chan, conn)
-    message("Ducks are migrating, to shoot ducks use @bang|@pew, use @befriend|@bef|@crackers to save them.", chan)
+    message("Ducks are migrating, to shoot ducks use @bang|@pew|@boom, use @befriend|@bef|@crackers to save them.", chan)
 
 def set_ducktime(chan, conn):
     global game_status
@@ -200,7 +200,7 @@ def dbupdate(nick, chan, db, conn, shoot, friend):
         db.execute(query)
         db.commit()
 
-@hook.command("bang", "pew", autohelp=False)
+@hook.command("bang", "pew", "boom", autohelp=False)
 def bang(nick, chan, message, db, conn, notice):
     """when there is a duck on the loose use this command to shoot it."""
     global game_status, scripters
@@ -252,7 +252,7 @@ def bang(nick, chan, message, db, conn, notice):
             dbadd_entry(nick, chan, db, conn, score, 0)
         timer = "{:.3f}".format(shoot - deploy)
         duck = "duck" if score == 1 else "ducks"
-        message("{} Well done, you shot the duck in {} seconds! You have killed {} {} in {}.".format(nick, timer, score, duck, chan))
+        message("{} Perfect aim, you shot the duck in {} seconds! You have killed {} {} in {}.".format(nick, timer, score, duck, chan))
         set_ducktime(chan, conn)
 
 @hook.command("befriend", "bef", "crackers", autohelp=False)
@@ -308,7 +308,7 @@ def befriend(nick, chan, message, db, conn, notice):
             dbadd_entry(nick, chan, db, conn, 0, score)
         duck = "duck" if score == 1 else "ducks"
         timer = "{:.3f}".format(shoot - deploy)
-        message("{} you befriended a duck in {} seconds! You have made friends with {} {} in {}.".format(nick, timer, score, duck, chan))
+        message("{} You befriended a duck in {} seconds! You have made friends with {} {} in {}.".format(nick, timer, score, duck, chan))
         set_ducktime(chan,conn)
 
 def smart_truncate(content, length=320, suffix='...'):
