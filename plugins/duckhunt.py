@@ -81,7 +81,7 @@ def start_hunt(bot, chan, message, conn):
     else:
         game_status[conn.name][chan]['game_on'] = 1
     set_ducktime(chan, conn)
-    message("Ducks are migrating, to shoot ducks use @bang|@pew|@boom|@..., use @befriend|@bef|@crackers to save them.", chan)
+    message("Ducks are migrating, to shoot ducks use @bang|@pew|@boom, use @befriend|@bef|@crackers to save them.", chan)
 
 def set_ducktime(chan, conn):
     global game_status
@@ -200,7 +200,7 @@ def dbupdate(nick, chan, db, conn, shoot, friend):
         db.execute(query)
         db.commit()
 
-@hook.command("bang", "pew", "boom", "...", autohelp=False)
+@hook.command("bang", "pew", "boom", autohelp=False)
 def bang(nick, chan, message, db, conn, notice):
     """when there is a duck on the loose use this command to shoot it."""
     global game_status, scripters
