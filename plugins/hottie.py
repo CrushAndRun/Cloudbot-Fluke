@@ -16,14 +16,14 @@ def hottie():
                 if attempts > 2:
                     randerrmsg = random.randint(0,2)
 
-                        if randerrmsg == 0:
-                            return "There was an error finding a hot girl for you."
-                        elif randerrmsg == 1:
-                            return "You don't deserve a hot girl."
-                        elif randerrmsg == 2:
-                            return "No hot girl for you today."
-                        else:
-                            return "There was an error finding a hot girl for you."
+                    if randerrmsg == 0:
+                        return "There was an error finding a hot girl for you."
+                    elif randerrmsg == 1:
+                        return "You don't deserve a hot girl."
+                    elif randerrmsg == 2:
+                        return "No hot girl for you today."
+                    else:
+                        return "There was an error finding a hot girl for you."
                                 
                 else:
                     attempts += 1
