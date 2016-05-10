@@ -81,7 +81,7 @@ def start_hunt(bot, chan, message, conn):
     else:
         game_status[conn.name][chan]['game_on'] = 1
     set_ducktime(chan, conn)
-    message("Ducks are migrating, to shoot ducks use @bang|@pew|@boom, use @befriend|@bef|@crackers to save them.", chan)
+    message("Ducks are migrating, to shoot ducks use @bang|@pew|@boom, use @befriend|@bef to save them.", chan)
 
 def set_ducktime(chan, conn):
     global game_status
@@ -255,7 +255,7 @@ def bang(nick, chan, message, db, conn, notice):
         message("{} Perfect aim, you shot the duck in {} seconds! You have killed {} {} in {}.".format(nick, timer, score, duck, chan))
         set_ducktime(chan, conn)
 
-@hook.command("befriend", "bef", "crackers", autohelp=False)
+@hook.command("befriend", "bef", autohelp=False)
 def befriend(nick, chan, message, db, conn, notice):
     """when there is a duck on the loose use this command to befriend it before someone else shoots it."""
     global game_status, scripters
@@ -264,7 +264,7 @@ def befriend(nick, chan, message, db, conn, notice):
     network = conn.name
     out = ""
     score = ""
-    miss = ["Well this is odd, the duck doesn't want to be your friend.", "The duck said no, maybe bribe it with some mcdonald's fries?", "The duck didn't recognise you as a friend, maybe get a duck outfit? https://x0.no/mz9k"]
+    miss = ["Well this is odd, the duck doesn't want to be your friend.", "The duck said no, maybe bribe it with some mcdonald's fries?", "The duck didn't recognise you as a friend, maybe get a duck outfit? https://x0.no/mz9k", "The ducks seem to be out of crackers, crackers make friends right?"]
     if not game_status[network][chan]['game_on']:
         return "There is no hunt right now. Use .starthunt to start a game."
     elif game_status[network][chan]['duck_status'] != 1:
