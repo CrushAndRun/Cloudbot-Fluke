@@ -42,7 +42,7 @@ def get_account(nick):
     return last_account
 
 
-@hook.command("lastfm", "last", "np", "l", autohelp=False)
+@hook.command("lastfm", "last", "np",  autohelp=False)
 def lastfm(text, nick, db, bot, notice):
     """[user] [dontsave] - displays the now playing (or last played) track of LastFM user [user]"""
     api_key = bot.config.get("api_keys", {}).get("lastfm")
@@ -197,7 +197,7 @@ def getuserartistplaycount(text, nick, bot, notice):
 
     return out
 
-@hook.command("band", "la")
+@hook.command("band")
 def displaybandinfo(text, nick, bot, notice):
     """[artist] - displays information about [artist]."""
     if not text:
@@ -227,7 +227,7 @@ def getartistinfo(artist, bot, user = ''):
     artist = request.json()
     return artist
 
-@hook.command("lastfmcompare", "compare", "lc")
+@hook.command("lastfmcompare", "compare")
 def lastfmcompare(text, nick, bot, db):
     """[user] ([user] optional) - displays the now playing (or last played) track of LastFM user [user]"""
     api_key = bot.config.get("api_keys", {}).get("lastfm")
@@ -285,7 +285,7 @@ def lastfmcompare(text, nick, bot, db):
                                                                                                  score, artist_string)
 
 
-@hook.command("ltop", "ltt", autohelp=False)
+@hook.command("listtop", autohelp=False)
 def toptrack(text, nick, db, bot, notice):
     """Grabs a list of the top tracks for a last.fm username"""
     api_key = bot.config.get("api_keys", {}).get("lastfm")
@@ -324,7 +324,7 @@ def toptrack(text, nick, db, bot, notice):
     return out
 
 
-@hook.command("lta", "topartist", autohelp=False)
+@hook.command("topartist", autohelp=False)
 def topartists(text, nick, db, bot, notice):
     """Grabs a list of the top artists for a last.fm username. You can set your lastfm username with .l username"""
     api_key = bot.config.get("api_keys", {}).get("lastfm")
@@ -361,19 +361,19 @@ def topartists(text, nick, db, bot, notice):
         out = out + "{} listened to {:,} times. ".format(artist_name, int(play_count))
     return out
 
-@hook.command("ltw", "topweek", autohelp=False)
+@hook.command("topweek", autohelp=False)
 def topweek(text, nick, db, bot, notice):
     """Grabs a list of the top artists in the last week for a last.fm username. You can set your lastfm username with .l username"""
     topweek = topartists(text, nick, db, bot, notice, '7day')
     return topweek
 
-@hook.command("ltm", "topmonth", autohelp=False)
+@hook.command("topmonth", autohelp=False)
 def topmonth(text, nick, db, bot, notice):
     """Grabs a list of the top artists in the last month for a last.fm username. You can set your lastfm username with .l username"""
     topmonth = topartists(text, nick, db, bot, notice, '1month')
     return topmonth
 
-@hook.command("lta", "topall", autohelp=False)
+@hook.command("topall", autohelp=False)
 def topall(text, nick, db, bot, notice):
     """Grabs a list of the top artists in the last year for a last.fm username. You can set your lastfm username with .l username"""
     topall = topartists(text, nick, db, bot, notice, '1year')
