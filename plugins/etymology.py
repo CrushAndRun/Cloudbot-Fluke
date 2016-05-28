@@ -7,7 +7,7 @@ import requests
 
 from cloudbot import hook
 
-@hook.command("e", "etymology")
+@hook.command("ety", "etymology")
 def etymology(text):
     """<word> - retrieves the etymology of <word>
     :type text: str
