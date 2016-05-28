@@ -148,7 +148,7 @@ def get_quote_by_chan(db, chan, num=False):
     return format_quote(data, num, count)
 
 
-@hook.command('q', 'quote')
+@hook.command('quote')
 def quote(text, nick, chan, db, notice):
     """[#chan] [nick] [#n] OR add <nick> <message> - gets the [#n]th quote by <nick> (defaulting to random)
     OR adds <message> as a quote for <nick> in the caller's channel"""
