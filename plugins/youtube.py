@@ -9,7 +9,7 @@ from cloudbot.util import timeformat
 from cloudbot.util.formatting import pluralize
 
 
-youtube_re = re.compile(r'(?:youtube.*?(?:v=|/v/)|youtu\.be/|yooouuutuuube.*?id=)([-_a-zA-Z0-9]+)', re.I)
+youtube_re = re.compile(r'(?:youtube.*?(?:v=|/v/|/embed/)|youtu\.be/|yooouuutuuube.*?id=)([-_a-zA-Z0-9]+)', re.I)
 
 base_url = 'https://www.googleapis.com/youtube/v3/'
 api_url = base_url + 'videos?part=contentDetails%2C+snippet%2C+statistics&id={}&key={}'
