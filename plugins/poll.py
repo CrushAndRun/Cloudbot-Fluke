@@ -99,12 +99,12 @@ def poll(text, conn, nick, chan, message, reply):
 
     option_str = get_text_list([option.title for option in _poll.options.values()], "and")
     message('Created poll \x02\"{}\"\x02 with the following options: {}'.format(_poll.question, option_str))
-    message("Use .vote {} <option> to vote on this poll!".format(nick.lower()))
+    message("Use @vote {} <option> to vote on this poll!".format(nick.lower()))
 
 
 @hook.command(autohelp=True)
 def vote(text, nick, conn, chan, notice):
-    """.vote <poll> <choice> - Vote on a poll; responds on error and silently records on success."""
+    """@vote <poll> <choice> - Vote on a poll; responds on error and silently records on success."""
     global polls
 
     if len(text.split(' ', 1)) == 2:
