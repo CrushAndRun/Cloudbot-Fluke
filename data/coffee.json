@@ -1,7 +1,7 @@
 {
   "templates": [
     "serves {user} a {size} {coffee} coffee with {shots} shots of espresso!",
-    "serves {user} a {size} hot {coffee} coffee"
+    "serves {user} a {size} hot {coffee} coffee, enjoy!"
   ],
   "parts": {
     "size": [
