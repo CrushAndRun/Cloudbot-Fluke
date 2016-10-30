@@ -1,12 +1,9 @@
 {
   "templates": [
-    "hands {user} a {size} {temperature} {coffee} with {shots} shots of espresso!"
+    "serves {user} a {size} {coffee} coffee with {shots} shots of espresso!",
+    "serves {user} a {size} hot {coffee} coffee"
   ],
   "parts": {
-    "temperature": [
-      "hot",
-      "iced"
-    ],
     "size": [
       "large",
       "medium",
@@ -16,7 +13,10 @@
       "american",
       "cafe con leche",
       "cappuccino",
-      "latte"
+      "latte",
+      "Dunkin' Donuts",
+      "Waffle House",
+      "French Pressed"  
     ],
     "shots": [
       "one",
