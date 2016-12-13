@@ -11,9 +11,9 @@ define_url = base_url + "/define"
 random_url = base_url + "/random"
 
 
-@hook.command("urban", autohelp=False)
+@hook.command("ud", autohelp=False)
 def urban(text):
-    """urban <phrase> [id] -- Looks up <phrase> on urbandictionary.com."""
+    """ud <phrase> [id] -- Looks up <phrase> on urbandictionary.com."""
 
     headers = {
         "Referer": "http://m.urbandictionary.com"
