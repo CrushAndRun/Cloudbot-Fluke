@@ -86,8 +86,8 @@ def start_hunt(bot, chan, message, conn):
 def set_ducktime(chan, conn):
     global game_status
 #    game_status[conn.name][chan]['next_duck_time'] = random.randint(int(time()) + 3600, int(time()) + 7200)
-    game_status[conn.name][chan]['next_duck_time'] = random.randint(int(time()) + 2700, int(time()) + 10800)
-    #game_status[conn.name][chan]['flyaway'] = game_status[conn.name][chan]['next_duck_time'] + 600
+    game_status[conn.name][chan]['next_duck_time'] = random.randint(int(time()) + 2700, int(time()) + 7200)
+    game_status[conn.name][chan]['flyaway'] = game_status[conn.name][chan]['next_duck_time'] + 600
     game_status[conn.name][chan]['duck_status'] = 0
     return
 
@@ -210,7 +210,7 @@ def bang(nick, chan, message, db, conn, notice):
     network = conn.name
     score = ""
     out = ""
-    miss = ["WHOOSH! You missed the duck completely!", "Your gun jammed!", "Better luck next time.", "Your barrel must be bent lol, maybe next time!", "Clearly you're using a BB gun, get a real gun and try again!", "Did you just throw a firecracker? Go buy a shotgun and come back!" ]
+    miss = ["WHOOSH! You missed the duck completely!", "Your gun jammed!", "Better luck next time.", "Your barrel must be bent lol, maybe next time!", "Clearly you're using a BB gun, get a real gun and try again!", "Did you just throw a firecracker? Go buy a shotgun and come back!","Wow, Could you be a worse shot?" ]
     if not game_status[network][chan]['game_on']:
         return "There is no activehunt right now. Use @starthunt to start a game."
     elif game_status[network][chan]['duck_status'] != 1:
