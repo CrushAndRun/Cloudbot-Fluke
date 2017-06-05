@@ -8,7 +8,7 @@ ruleslist = {"spam": "Your issue was too long. Go to http://pastebin.com and lin
 "enter": "Enter is not a spacebar, please try to form complete sentences to avoid being kicked by a bot or appearing as though you're just spamming.",
 "pastie": "Please don't paste all that content here, go to http://pastie.org/ and link your issue instead..thanks.",
 "caps": "Please refrain from using all or mostly caps, failure to adhere to this notice may result in your nick being quieted or fbanned.",
-"network help": "If you need help with channel/nick/network issues please /join #crushandrun and state your issue."}
+"help": "If you need help with channel/nick/network issues please /join #crushandrun and state your issue."}
 
 # Generate the rules list reply.
 # Beginning phrase.
