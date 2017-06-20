@@ -86,7 +86,7 @@ rules = { 1: "Do not talk about /b/.",
           84: "All rules ARE true, including this one.",
           85: "Retarded rules are forbidden.",
           86: "The term 'sage' does not refer to the spice.",
-          87: "If you get pepperoni ever again, I swear I'll blow this joint sky-high!"
+          87: "If you get pepperoni ever again, I swear I'll blow this joint sky-high!",
           88: "Anonymous rules the internet. No exceptions.",
           89: "Bruce Lee was a hero to us all.",
           90: "It's never lupus.",
