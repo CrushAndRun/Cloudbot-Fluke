@@ -104,17 +104,17 @@ rules = { 1: "Do not talk about /b/.",
           899: "No one intentionally sees their first dickgirl. No exceptions."
   }
 
- def getRule(self, e):
-     if e.input:
-          if isIntegerValue(e.input) and int(e.input) >= 1 and int(e.input) <= len(rules):
-               e.output = "Internet Rule #"+str(e.input)+": "+rules[int(e.input)]
-          else:
-               e.output = "Stop making up rules!."
-     else:
-          random_rule = random.randint(1, len(rules))
-          e.output = "Internet Rule #"+str(random_rule)+": "+rules[random_rule]
-     return e
-     
+def getRule(self, e):
+    if e.input:
+         if isIntegerValue(e.input) and int(e.input) >= 1 and int(e.input) <= len(rules):
+              e.output = "Internet Rule #"+str(e.input)+": "+rules[int(e.input)]
+         else:
+              e.output = "Stop making up rules!."
+    else:
+         random_rule = random.randint(1, len(rules))
+         e.output = "Internet Rule #"+str(random_rule)+": "+rules[random_rule]
+    return e
+    
 def isIntegerValue(v):
      try:
           int(v)
