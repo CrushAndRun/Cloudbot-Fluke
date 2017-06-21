@@ -15,7 +15,7 @@ fourtwentys = ['OMG THANKS!',
 		       'everybody must get stoned, sing it if you know the words! \:)'
 	]
 
-@hook.command("420", "bubbler", "bong", "MJ", "bonghit", "hash", autohelp=False)
+@hook.command("420", "bubbler", "bong", "MJ", "bonghit", "hashish", autohelp=False)
 def fourtwenty(message, conn):
-    """Get the bot high with your choice: 420, bubbler, bong, MJ, bonghit, hash."""
+    """Get the bot high with your choice: 420, bubbler, bong, MJ, bonghit, hashish."""
     message(random.choice(fourtwentys))
