@@ -81,7 +81,7 @@ def boobies(text, conn):
     out = text.strip()
     out = out.replace('o', boob).replace('O', boob).replace('0', boob)
     if out == text.strip():
-        return "Sorry I couldn't turn anything in '{}' into boobs for you.".format(out)
+        return "Sorry I couldn't turn '{}' into boobs for you.".format(out)
     return out
 
 @hook.command("awesome", "iscool", "cool")
