@@ -16,6 +16,6 @@ fourtwentys = ['OMG THANKS!',
 	]
 
 @hook.command("botsnack", "420", "bubbler", "bong", "MJ", "bonghit", "hash", autohelp=False)
-def 420(message, conn):
+def fourtwenty(message, conn):
     """Get the bot high with your choice: 420, bubbler, bong, MJ, bonghit, hash."""
     message(random.choice(fourtwentys)
