@@ -14,4 +14,4 @@ bubblers = ['Fires up the bubbler and passes it around.',
 @hook.command("bubbles", "fireitup", autohelp=False)
 def bubbles(message, conn):
     """Have the bot fire up the bubbler and pass it around: bubbles, fireitup."""
-message(random.choice(bubblers))
+    message(random.choice(bubblers))
