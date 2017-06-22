@@ -122,7 +122,7 @@ for i in irulesactuallist:
 # Finish phrase.
 iruleslistreply = iruleslistreply+"."
 
-@hook.command(permissions=[" "])
+@hook.command(irule)
 def irules(text, nick, chan, conn):
         # Check for a category name.
         if text:
@@ -154,6 +154,6 @@ def irules(text, nick, chan, conn):
         else:
                 conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
 
-@hook.command(permissions=[" "])
+@hook.command(irules)
 def listirules(conn, nick):
         conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
