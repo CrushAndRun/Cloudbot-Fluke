@@ -107,7 +107,7 @@ iruleslist = {
   }
 # Generate the irules list reply.
 # Beginning phrase.
-iruleslistreply = "List of errors are: "
+iruleslistreply = "List of internet rules are: "
 # Make the list of entries.
 irulesactuallist = list(iruleslist.keys())
 # Alphabetize it.
