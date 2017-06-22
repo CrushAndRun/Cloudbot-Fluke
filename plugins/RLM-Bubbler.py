@@ -8,7 +8,7 @@ bubblers = ['Fires up the bubbler and passes it around.',
 		       'Loads bubbler with dank RLM weed and shares.', 
 		       'Steals the dankest weed from Grimnirs stash and fires up the bubbler.', 
 		       'OMFG I thought you would never ask! PUFF PUFF PASS.',
-			   'Steals robwerks bubbler and get RLM high.'
+			   'Steals robwerks bubbler and gets RLM high.'
 	]
 
 @hook.command("bubbles", "fireitup", autohelp=False)
