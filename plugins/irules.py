@@ -102,7 +102,8 @@ iruleslist = {
           "98": "Only Zippocat is truth.",
           "99": "All numbers are at least 100 but always OVER NINE THOUSAAAAAND.",
           "100": "Faggotry will not be tolerated.",
-          "899": "No one intentionally sees their first dickgirl. No exceptions."
+          "899": "No one intentionally sees their first dickgirl. No exceptions.",
+          "https://pastebin.com/jYG2UG5D": "List of internet rules."
   }
 # Generate the irules list reply.
 # Beginning phrase.
