@@ -76,7 +76,7 @@ def lart(text, conn, nick, action):
 
 
 @asyncio.coroutine
-@hook.command("flirt", "sexup", "jackmeoff", "suckmyclit", "makemesquirt", "twerkmycock")
+@hook.command("flirt", "catcall", "ogle")
 def flirt(text, conn, nick, message):
     """<user> - flirts with <user>"""
     target = text.strip()
