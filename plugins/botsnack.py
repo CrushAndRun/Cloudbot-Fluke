@@ -15,7 +15,7 @@ snacks = ['OMG THANKS!',
 		  'yummy thanks \:)'
 	]
 
-@hook.command("botsnack", "nummies", "moar_nummies", "skittles", "jellybeans", "smores", "bubblegum", autohelp=False)
+@hook.command("botsnack", "nummies", "moar_nummies", "skittles", "jellybeans", "smores", "bubblegum", "bacon", autohelp=False)
 def botsnack(message, conn):
-    """Reward the bot with a snack, snacks include: botsnack, nummies, moar_nummies, skittles, jellybeans, smores, bubblegum."""
+    """Reward the bot with a snack, snacks include: botsnack, nummies, moar_nummies, skittles, jellybeans, smores, bubblegum, bacon."""
     message(random.choice(snacks))
