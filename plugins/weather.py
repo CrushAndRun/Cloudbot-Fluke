@@ -167,7 +167,7 @@ def weather(text, reply, db, nick, notice):
     else:
         weather_data['url'] = web.shorten(response["current_observation"]['ob_url'])
 
-    reply("{place} - \x02Current:\x02 {conditions}, {temp_f}F/{temp_c}C, {humidity}, "
+    reply("{place} - \x02Current:\x02 {conditions}, {temp_f}F/{temp_c}C, {humidity}RH, "
           "Wind: {wind_kph}KPH/{wind_mph}MPH {wind_direction}, \x02Today:\x02 {today_conditions}, "
           "High: {today_high_f}F/{today_high_c}C, Low: {today_low_f}F/{today_low_c}C. "
           "\x02Tomorrow:\x02 {tomorrow_conditions}, High: {tomorrow_high_f}F/{tomorrow_high_c}C, "
