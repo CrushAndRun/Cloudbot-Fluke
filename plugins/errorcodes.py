@@ -112,7 +112,7 @@ for i in ecodesactuallist:
 # Finish phrase.
 ecodeslistreply = ecodeslistreply+"."
 
-@hook.command(ecode)
+@hook.command
 def ecodes(text, nick, chan, conn):
         # Check for a category name.
         if text:
@@ -144,6 +144,6 @@ def ecodes(text, nick, chan, conn):
         else:
                 conn.cmd("PRIVMSG " + nick + " :"+ecodeslistreply)
 
-@hook.command(ecodes)
+@hook.command
 def listecodes(conn, nick):
         conn.cmd("PRIVMSG " + nick + " :"+ecodeslistreply)
