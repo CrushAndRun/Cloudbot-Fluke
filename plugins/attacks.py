@@ -40,6 +40,9 @@ def load_attacks(bot):
     with codecs.open(os.path.join(bot.data_dir, "flirts.txt"), encoding="utf-8") as f:
         flirts = [line.strip() for line in f.readlines() if not line.startswith("//")]
 
+    with codecs.open(os.path.join(bot.data_dir, "rekts.txt"), encoding="utf-8") as f:
+        rekts = [line.strip() for line in f.readlines() if not line.startswith("//")]
+        
     with codecs.open(os.path.join(bot.data_dir, "insults.txt"), encoding="utf-8") as f:
         insults = [line.strip() for line in f.readlines() if not line.startswith("//")]
 
