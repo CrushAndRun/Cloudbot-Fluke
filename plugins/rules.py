@@ -6,7 +6,7 @@ ruleslist = {"spam": "Your issue was too long. Go to http://pastebin.com and lin
 "abuse": "Please refrain from abusing the bot as it might cause you to be kicked from the channel, thanks.",
 "monologue": "Please take your monologue elsewhere other than this channel, maybe you could start a blog..thanks.",
 "enter": "Enter is not a spacebar, please try to form complete sentences to avoid being kicked by a bot or appearing as though you're just spamming.",
-"pastie": "Please don't paste all that content here, go to http://pastie.org/ and link your issue instead..thanks.",
+"pastie": "Please don't paste all that content here, go to https://pastebin.com/ and link your issue instead..thanks.",
 "caps": "Please refrain from using all or mostly caps, failure to adhere to this notice may result in your nick being quieted or fbanned.",
 "help": "If you need help with channel/nick/network issues please /join #crushandrun and state your issue."}
 
