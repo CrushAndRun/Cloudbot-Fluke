@@ -11,7 +11,7 @@ from cloudbot.event import EventType
 from cloudbot.util import botvars
 
 table = Table(
-    'rpg',
+    'rpg_monsterhunt',
     botvars.metadata,
     Column('network', String),
     Column('chan', String),
@@ -24,7 +24,7 @@ table = Table(
     )
 
 captures_table = Table(
-    'rpgcaptures',
+    'rpgcaptures_monsterhunt',
     botvars.metadata,
     Column('network', String),
     Column('chan', String),
@@ -35,7 +35,7 @@ captures_table = Table(
     )
 
 optout = Table(
-    'nohuntm',
+    'nohunt_monsterhunt',
     botvars.metadata,
     Column('network', String),
     Column('chan', String),
