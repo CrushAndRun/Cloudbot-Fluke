@@ -10,11 +10,11 @@ iruleslist = {
           "7": "Anonymous is still able to deliver.",
           "8": "There are no real rules about posting.",
           "9": "Always register with your local service provider.",
-          "10": "If you enjoy any rival sites — DON'T.",
+          "10": "If you enjoy any rival sites  DON'T.",
           "11": "All your carefully picked arguments can easily be ignored.",
           "12": "Anything you say can and will be used against you.",
           "13": "Anything you say can be turned into something else. - fixed",
-          "14": "Do not argue with trolls — it means that they win.",
+          "14": "Do not argue with trolls  it means that they win.",
           "15": "The harder you try, the harder you will fail.",
           "16": "If you fail in epic proportions, it may just become a winning failure.",
           "17": "Every win fails eventually.",
@@ -33,24 +33,27 @@ iruleslist = {
           "30": "There are NO girls on the internet.",
           "31": "TITS or GTFO - the choice is yours.",
           "32": "You must have pictures to prove your statements.",
-          "33": "Lurk moar — it's never enough.",
+          "33": "Lurk moar  it's never enough.",
           "34": "There is porn of it, no exceptions.",
           "35": "If no porn is found of it, it will be made.",
           "36": "There will always be more fucked up shit than what you just saw.",
           "37": "You can not divide by zero (just because the calculator says so).",
-          "38": "No real limits of any kind apply here — not even the sky.",
+          "38": "No real limits of any kind apply here  not even the sky.",
           "39": "CAPSLOCK IS CRUISE CONTROL FOR COOL.",
           "40": "EVEN WITH CRUISE CONTROL YOU STILL HAVE TO STEER.",
           "41": "Needs moar Desu. No exceptions.",
           "42": "Nothing is Sacred.",
           "43": "The more beautiful and pure a thing is, the more satisfying it is to corrupt it.",
-          "44": "Trying to edit the rules of the Internet with Japanese characters is like trying to make “2 girls, 1 cup” acceptable in society. It only works at A-con.",
+          "44": "Trying to edit the rules of the Internet with Japanese characters is like trying to make 2 girls, 1 cup acceptable in society. It only works at A-con.",
           "45": "When one sees a lion, one must get into the car.",
           "46": "There is furry porn of it. No exceptions.",
           "47": "The pool is always closed due to AIDS (and stingrays, which also have AIDS).",
           "48": "A cat is fine too.",
           "49": "One cat leads to another.",
-          "50": "Another cat leads to Zippo Cat.",
+          "50": "Another cat leads to Zippo Cat."
+}
+
+iruleslist = { 
           "51": "No matter what it is, it is somebody's fetish. No exceptions.",
           "52": "It is delicious cake. You must eat it.",
           "53": "It is delicious trap. You must hit it.",
@@ -104,10 +107,10 @@ iruleslist = {
           "100": "Faggotry will not be tolerated.",
           "899": "No one intentionally sees their first dickgirl. No exceptions.",
           "https://pastebin.com/jYG2UG5D": "List of internet rules."
-  }
+}
 # Generate the irules list reply.
 # Beginning phrase.
-iruleslistreply = "List of internet rules are: "
+iruleslistreply = "List of errors are: "
 # Make the list of entries.
 irulesactuallist = list(iruleslist.keys())
 # Alphabetize it.
@@ -124,7 +127,7 @@ for i in irulesactuallist:
 iruleslistreply = iruleslistreply+"."
 
 @hook.command
-def irules(text, nick, chan, conn):
+def irule(text, nick, chan, conn):
         # Check for a category name.
         if text:
                 # Split by spaces if they exist.
@@ -156,5 +159,5 @@ def irules(text, nick, chan, conn):
                 conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
 
 @hook.command
-def listirules(conn, nick):
+def irules(conn, nick):
         conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
