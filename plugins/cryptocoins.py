@@ -57,6 +57,7 @@ def bitcoin(text, notice):
     return func(response.json())
 
 
+
 @hook.command("ltc", "litecoin", autohelp=False)
 def litecoin(message):
     """- gets litecoin exchange rate from BTC-E"""
@@ -68,3 +69,54 @@ def litecoin(message):
     message("Current: \x0307${:,.2f}\x0f - High: \x0307${:,.2f}\x0f"
             " - Low: \x0307${:,.2f}\x0f - Volume: {:,.2f} LTC".format(ticker['buy'], ticker['high'], ticker['low'],
                                                                       ticker['vol_cur']))
+
+
+
+@hook.command("eth", "ethereum", autohelp=False)
+def ethereum(message):
+    """- gets ethereum exchange rate from BTC-E"""
+    response = requests.get("https://btc-e.com/api/2/eth_usd/ticker")
+    if response.status_code != requests.codes.ok:
+        return "Error reaching btc-e.com: {}".format(response.status_code)
+    data = response.json()
+    ticker = data['ticker']
+    message("Current: \x0307${:,.2f}\x0f - High: \x0307${:,.2f}\x0f"
+            " - Low: \x0307${:,.2f}\x0f - Volume: {:,.2f} ETH".format(ticker['buy'], ticker['high'], ticker['low'],
+                                                                      ticker['vol_cur']))
+
+
+
+@hook.command("dope", "dopecoin", autohelp=False)
+def dopecoin(message):
+    """- gets dopecoin exchange rate from CryptoCompare"""
+    response = requests.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=DOPE&tsyms=BTC,USD")
+    if response.status_code != requests.codes.ok:
+        return "Error reaching CryptoCompare.com: {}".format(response.status_code)
+    data = response.json()
+    ticker = data['DOPE']
+    message("USD: \x0307${:,.8f}\x0f - BTC: \x0307${:,.8f}\x0f DOPE".format(ticker['USD'], ticker['BTC']))
+
+
+
+@hook.command("bob", "dobbscoin", autohelp=False)
+def dobbscoin(message):
+    """- gets dobbscoin exchange rate from CryptoCompare"""
+    response = requests.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=BOB&tsyms=BTC,USD")
+    if response.status_code != requests.codes.ok:
+        return "Error reaching CryptoCompare.com: {}".format(response.status_code)
+    data = response.json()
+    ticker = data['BOB']
+    message("USD: \x0307${:,.8f}\x0f - BTC: \x0307${:,.8f}\x0f BOB".format(ticker['USD'], ticker['BTC']))
+
+
+
+@hook.command("doge", "dogecoin", autohelp=False)
+def dogecoin(message):
+    """- gets dogecoin exchange rate from CryptoCompare"""
+    response = requests.get("https://min-api.cryptocompare.com/data/pricemulti?fsyms=DOGE&tsyms=BTC,USD")
+    if response.status_code != requests.codes.ok:
+        return "Error reaching CryptoCompare.com: {}".format(response.status_code)
+    data = response.json()
+    ticker = data['DOGE']
+    message("USD: \x0307${:,.8f}\x0f - BTC: \x0307${:,.8f}\x0f DOGE".format(ticker['USD'], ticker['BTC']))
+
