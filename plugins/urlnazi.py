@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from sqlalchemy import Table, Column, String, DateTime, PrimaryKeyConstraint
 from cloudbot import hook
-from cloudbot.util import database
+from cloudbot.util import botvars
 import os
 import requests
 import re
@@ -44,7 +44,7 @@ base_url = 'http://tinyurl.com/api-create.php'
 
 table = Table(
     'urlnazi',
-    database.metadata,
+    botvars.metadata,
     Column('network', String(50)),
     Column('channel', String(50)),
     Column('user', String(50)),
