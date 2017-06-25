@@ -77,7 +77,21 @@ def lart(text, conn, nick, action):
     # act out the message
     action(phrase.format(user=target))
 
+@asyncio.coroutine
+@hook.command
+def rekt(text, conn, nick, message):
+    """<user> - rekts <user>"""
+    target = text.strip()
 
+    if not is_valid(target):
+        return "I can't attack that."
+
+    if is_self(conn, target):
+        # user is trying to make the bot attack itself!
+        target = nick
+
+message('{}, {}'.format(target, random.choice(rekts)))
+    
 @asyncio.coroutine
 @hook.command("flirt", "catcall", "ogle")
 def flirt(text, conn, nick, message):
