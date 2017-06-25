@@ -10,26 +10,28 @@ from cloudbot import hook
 from cloudbot.event import EventType
 from cloudbot.util import botvars
 
-fish = [" __
-		 
-		"  ,/..
-         <')   `=<
-          ``\\``` "
-			
-	    "  \
-           /\
-         >=)'>
-           \\/
-           / ", 
-		   
-		 "  \
-            }\
-      `\  .'  \
-       }\/ ~~ o\
-       }/\  )) _}
-      ,/ /`.  /`
-            \}/
-            / "]
+fish = [		 
+                " ¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸><(((º> FISH! "
+
+		 "  ,/..     "
+         " <')   `=< *´¨`*.¸¸.*´¨`*.¸¸.*´¨`*.¸¸.* OMG A FISH! "
+         " ``\\```   ",
+
+	     "                          \        "
+         "                          /\       "
+         "*.¸¸.*´¨`*.¸¸.*´¨`*.¸¸. >=)'>  GO FISH! "
+         "                         \\/       "
+         "                          /        ",
+
+		 "                            \      "
+         "                            }\     "
+         "                      `\  .'  \    "
+         "  *.¸¸.*´¨`*.¸¸.*´¨`*. }\/ ~~ o\   "
+         "  *.¸¸.*´¨`*.¸¸.*´¨`*. }/\  )) _}  BIG FISH!"
+         "                      ,/  /`.  /`  "
+         "                            \}/    "
+         "                             /     "
+         ]
 
 table = Table(
     'gofish',
@@ -500,3 +502,4 @@ def fish_stats(chan, conn, db, message):
         message("\x02Fish Stats:\x02 {} kcaught and {} fed in \x02{}\x02. Across {} channels \x02{}\x02 fish have been caught and \x02{}\x02 fed. \x02Top Channels:\x02 \x02{}\x02 with {} caught and \x02{}\x02 with {} fed".format(fish["chancaught"], fish["chanfeeders"], chan, fish["chans"], fish["caught"], fish["feeders"], caughtchan, caughtscore, feederschan, feedersscore))
     else:
         return "It looks like there has been no gofish activity in this channel or network."
+
