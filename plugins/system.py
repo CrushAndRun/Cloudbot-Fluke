@@ -26,7 +26,7 @@ def about(text, conn):
 @hook.command(autohelp=False)
 def version(text, conn):
     """-- Gives information about the version of CloudBot you're interacting with. Use @about [source|license|gpl] for other information"""
-    if text.lower() in ("version", "ver"):
+    if text.lower() in ("version"):
         return "{} is powered by CloudBot Refresh! ({}) - " \
            "https://github.com/CrushAndRun/Cloudbot-Fluke".format(conn.nick, cloudbot.__version__) 
 
