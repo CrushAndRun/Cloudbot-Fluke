@@ -10,9 +10,9 @@ from cloudbot import hook
 from cloudbot.event import EventType
 from cloudbot.util import botvars
 
-duck_tail = ["・゜゜・。。・゜゜", "。・゜゜・゜゜・。", "。。。。・゜゜゜゜・・"]
+duck_tail = ["¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸", "¸.•*´¨`*•.¸¸.•*´¨`*•.¸¸.•"]
 duck = ["\_o< ", "\_O< ", "\_0< ", "\_\u00f6< ", "\_\u00f8< ", "\_\u00f3< "]
-duck_noise = ["QUACK!", "FLAP FLAP!", "quack!", "flap flap!", "QUACK QUACK!"]
+duck_noise = ["FLAP FLAP!", "QUACK QUACK!", "ＱŮÅÇĶ ＱŮÅÇĶ!", "QᵁᴬCᴷ QᵁᴬCᴷ!", "Fᴸᴬᴾ Fᴸᴬᴾ!"]
 
 table = Table(
     'duck_hunt',
