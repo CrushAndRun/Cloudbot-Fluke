@@ -34,7 +34,7 @@ fish = [
          ]
 
 table = Table(
-    'gofish',
+    'gofish_2',
     botvars.metadata,
     Column('network', String),
     Column('name', String),
@@ -45,7 +45,7 @@ table = Table(
     )
 
 optout = Table(
-    'nofish',
+    'nofish_2',
     botvars.metadata,
     Column('network', String),
     Column('chan', String),
