@@ -15,7 +15,7 @@ import cloudbot
 
 @hook.command(autohelp=False)
 def about(text, conn):
-    """-- Gives information about CloudBot. Use .about license for licensing information"""
+    """-- Gives information about CloudBot. Use @about [source|license|gpl] for licensing information"""
     if text.lower() in ("license", "gpl", "source"):
         return "CloudBot Refresh is released under the GPL v3 license, get the source code " \
                "at https://github.com/CloudBotIRC/CloudBot/"
@@ -23,6 +23,12 @@ def about(text, conn):
     return "{} is powered by CloudBot Refresh! ({}) - " \
            "https://github.com/CloudBotIRC/CloudBot/".format(conn.nick, cloudbot.__version__)
 
+@hook.command(autohelp=False)
+def version(text, conn):
+    """-- Gives information about the version of CloudBot you're interacting with. Use @about [source|license|gpl] for other information"""
+    if text.lower() in ("version", "ver"):
+    return "{} is powered by CloudBot Refresh! ({}) - " \
+           "https://github.com/CrushAndRun/Cloudbot-Fluke".format(conn.nick, cloudbot.__version__) 
 
 @hook.command(autohelp=False)
 def system(reply, message):
