@@ -120,7 +120,7 @@ miss_msg = ['but you tripped and left yourself defenseless',\
         'but it was just too strong',\
         'but forgot monsters can attack you too']
 capture_miss_msg = ['but you tripped and left yourself defenseless',\
-        'but it was just too string',\
+        'but it was just too strong',\
         'but forgot monsters won\'t just sit there calmly']
 too_fast = 'You were rushing so fast that you tripped and were mauled to death by all 3 monsters. Then a meteor fell from the sky and landed on your corpse.'
 
@@ -161,7 +161,7 @@ def incrementMsgCounter(event, conn, chan, nick, db):
         if event.host not in game_status[conn.name][chan]['masks']:
             game_status[conn.name][chan]['masks'].append(event.host)
 
-@hook.command("start", autohelp=False)
+@hook.command("rpgstart", autohelp=False)
 def start_game(bot, chan, message, conn):
     """This command starts an RPG game in your channel, to stop the hunt use @stop"""
     global game_status
@@ -224,7 +224,7 @@ def set_monster_time(chan, conn):
     game_status[conn.name][chan]['failures'] = 0
     return
 
-@hook.command("stop", autohelp=False)
+@hook.command("rpgstop", autohelp=False)
 def stop_game(chan, conn):
     """This command stops the RPG game in your channel. Scores will be preserved"""
     global game_status
@@ -664,7 +664,7 @@ def smart_truncate(content, length=320, suffix='...'):
         return content[:length].rsplit(' • ', 1)[0]+suffix
 
 
-@hook.command("leaderboard", "leader", "leaders", "lead", "leads", autohelp=False)
+@hook.command("leaderboard", "leader", "lead", autohelp=False)
 def leaderboard(text, chan, conn, db):
     """Prints a list of the top killers in the channel."""
     if freeze > 0:
@@ -991,11 +991,11 @@ def instructions(nick, chan, conn, notice):
     """Messages you the instructions to the RPG game."""
     if freeze > 0:
         return
-    out = "Use the ,attack or ,atk command to attack a monster."
+    out = "Use the @attack or @atk command to attack a monster."
     out += " By default, this will attack the highest-level monster that is not stronger than you."
     out += " To control which monster you attack, you can add a number after the command."
-    out += " For example, ',atk 1' or ',atk 3'."
-    out += " The ,capture or ,cap command works the same way, except it captures instead of attacks."
+    out += " For example, '@atk 1' or '@atk 3'."
+    out += " The @capture or @cap command works the same way, except it captures instead of attacks."
     out += " Capturing has a lower success rate, but permanently increases the chance of killing the same type of monster."
     out += " Killing a monster rewards you with EXP. Collect enough EXP to level up."
     out += " Higher levels increase your chances of killing and capturing monsters."
