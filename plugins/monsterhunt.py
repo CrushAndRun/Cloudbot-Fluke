@@ -8,11 +8,11 @@ from sqlalchemy import Table, Column, String, Integer, PrimaryKeyConstraint, des
 from sqlalchemy.sql import select
 from cloudbot import hook
 from cloudbot.event import EventType
-from cloudbot.util import database
+from cloudbot.util import botvars
 
 table = Table(
     'rpg',
-    database.metadata,
+    botvars.metadata,
     Column('network', String),
     Column('chan', String),
     Column('name', String),
@@ -25,7 +25,7 @@ table = Table(
 
 captures_table = Table(
     'rpgcaptures',
-    database.metadata,
+    botvars.metadata,
     Column('network', String),
     Column('chan', String),
     Column('name', String),
@@ -35,8 +35,8 @@ captures_table = Table(
     )
 
 optout = Table(
-    'nohunt',
-    database.metadata,
+    'nohuntm',
+    botvars.metadata,
     Column('network', String),
     Column('chan', String),
     PrimaryKeyConstraint('chan', 'network')
