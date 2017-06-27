@@ -11,7 +11,7 @@ from cloudbot.event import EventType
 from cloudbot.util import botvars
 
 fish = [		 
-                " ¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸><(((º> ᴬ FᴵSᴴ! "
+                " ¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸><(((º> ᴬ FᴵSᴴ! ",
 
 		 "  ,/..     "
          " <')   `=< *´¨`*.¸¸.*´¨`*.¸¸.*´¨`*.¸¸.* ᴼᴹᴳ ᴬ FᴵSᴴ! "
