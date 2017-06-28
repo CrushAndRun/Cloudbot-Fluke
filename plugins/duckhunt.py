@@ -265,7 +265,7 @@ def befriend(nick, chan, message, db, conn, notice):
     network = conn.name
     out = ""
     score = ""
-    miss = ["Well this is odd, the duck doesn't want to be your friend.", "The duck said no, maybe bribe it with some mcdonald's fries?", "The duck didn't recognise you as a friend, maybe get a duck outfit? https://x0.no/mz9k", "The ducks seem to be out of crackers, crackers make friends right?"]
+    miss = ["Well this is odd, the duck doesn't want to be your friend.", "The duck said no, maybe bribe it with some mcdonald's fries?", "The duck didn't recognise you as a friend, maybe get a duck outfit? https://is.gd/duck_outfit", "The ducks seem to be out of crackers, crackers make friends right?"]
     if not game_status[network][chan]['game_on']:
         return "There is no hunt right now. Use .starthunt to start a game."
     elif game_status[network][chan]['duck_status'] != 1:
