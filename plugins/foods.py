@@ -17,6 +17,10 @@ cookies = ['Chocolate Chip', 'Oatmeal', 'Sugar', 'Oatmeal Raisin', 'Macadamia Nu
            'Biscotti', 'Oatmeal Cranberry', 'Chocolate Fudge', 'Peanut Butter', 'Pumpkin', 'Lemon Bar',
            'Chocolate Oatmeal Fudge', 'Toffee Peanut', 'Danish Sugar', 'Triple Chocolate', 'Oreo']
 
+popcorns = ['caramel sea salt', 'cheddar cheese', 'buttered', 'dark chocolate', 'garlic parmesan', 'jalapeno cheddar',
+           'dark chocolate chipotle', 'thai red coconut curry', 'chorizo manchego', 'maple pecan', '', 'toffee almond',
+           'macadamia butter crunch', 'nacho cheese', 'loads of butter and season salt', 'triple chocolate walnut cayenne']
+
 # <Luke> Hey guys, any good ideas for plugins?
 # <User> I don't know, something that lists every potato known to man?
 # <Luke> BRILLIANT
@@ -150,7 +154,23 @@ def cookie(text, action):
 
     action("{} {} a {} {} {} cookie and serves it with a {}!".format(method, user, flavor, size, cookie_type,
                                                                      side_dish))
+    
+@asyncio.coroutine
+@hook.command
+def popcorn(text, action):
+    """gives <user> some popcorn, usage: popcorn <user>"""
+    user = text.strip()
 
+    if not is_valid(user):
+        return "I can't give popcorn to that user."
+
+    popcorn_type = random.choice(popcorns)
+    method = random.choice(['makes', 'gives', 'pops', 'serves', 'open fire pops'])
+    size = random.choice(['small bag', 'large bag', 'gigantic bag'])
+    flavor = random.choice(['tasty', 'delectable', 'delicious', 'yummy', 'toothsome', 'scrumptious', 'omnomnom', 'HOT'])
+
+    action("{} {} a {} of {} {} popcorn!".format(method, user, size, flavor, popcorn_type))
+    
 
 @asyncio.coroutine
 @hook.command
