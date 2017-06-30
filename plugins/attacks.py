@@ -32,7 +32,7 @@ def load_attacks(bot):
     """
     :type bot: cloudbot.bot.CloudBot
     """
-    global larts, flirts, kills, slaps, north_korea, insults, strax
+    global larts, flirts, kills, slaps, north_korea, insults, strax, rekts
 
     with codecs.open(os.path.join(bot.data_dir, "larts.txt"), encoding="utf-8") as f:
         larts = [line.strip() for line in f.readlines() if not line.startswith("//")]
@@ -62,11 +62,11 @@ def load_attacks(bot):
 @asyncio.coroutine
 @hook.command
 def lart(text, conn, nick, action):
-    """<user> - LARTs <user>"""
+    """Luser Attitude Readjustment Tool - lart <user>"""
     target = text.strip()
 
     if not is_valid(target):
-        return "I can't attack that."
+        return "I can't lart that."
 
     if is_self(conn, target):
         # user is trying to make the bot attack itself!
@@ -84,7 +84,7 @@ def rekt(text, conn, nick, message):
     target = text.strip()
 
     if not is_valid(target):
-        return "I can't attack that."
+        return "I can't rekt that."
 
     if is_self(conn, target):
         # user is trying to make the bot attack itself!
@@ -95,11 +95,11 @@ message('{}, {}'.format(target, random.choice(rekts)))
 @asyncio.coroutine
 @hook.command("flirt", "catcall", "ogle")
 def flirt(text, conn, nick, message):
-    """<user> - flirts with <user>"""
+    """flirt|catcall|ogle <user>"""
     target = text.strip()
 
     if not is_valid(target):
-        return "I can't attack that."
+        return "I can't flirt with that."
 
     if is_self(conn, target):
         # user is trying to make the bot attack itself!
@@ -111,11 +111,11 @@ def flirt(text, conn, nick, message):
 @asyncio.coroutine
 @hook.command
 def kill(text, conn, nick, action):
-    """<user> - kills <user>"""
+    """kill <user>"""
     target = text.strip()
 
     if not is_valid(target):
-        return "I can't attack that."
+        return "I can't kill that."
 
     if is_self(conn, target):
         # user is trying to make the bot attack itself!
@@ -130,11 +130,11 @@ def kill(text, conn, nick, action):
 @asyncio.coroutine
 @hook.command
 def slap(text, action, nick, conn, notice):
-    """<user> -- Makes the bot slap <user>."""
+    """slap <user>"""
     target = text.strip()
 
     if not is_valid(target):
-        return "I can't attack that."
+        return "I can't slap that."
 
     if is_self(conn, target):
         # user is trying to make the bot attack itself!
@@ -155,7 +155,7 @@ def strax(text, conn, message, nick):
     if text:
         target = text.strip()
         if not is_valid(target):
-           return "I can't attack that."
+           return "I can't strax that."
  
         if is_self(conn, target):
            # user is trying to make the bot attack itself!
