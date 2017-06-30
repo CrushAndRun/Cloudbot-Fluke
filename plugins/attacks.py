@@ -90,7 +90,7 @@ def rekt(text, conn, nick, message):
         # user is trying to make the bot attack itself!
         target = nick
 
-message('{}, {}'.format(target, random.choice(rekts)))
+    message('{}, {}'.format(target, random.choice(rekts)))
     
 @asyncio.coroutine
 @hook.command("flirt", "catcall", "ogle")
