@@ -163,8 +163,8 @@ def deploy_fish(message, bot):
                 #deploy a fish to channel
                 game_status[network][chan]['fish_status'] = 1
                 game_status[network][chan]['fish_time'] = time()
-                ftail, fbody = generate_fish()
-                conn.message(chan, "{}{}{}".format(ftail, fbody))
+                fbody = generate_fish()
+                conn.message(chan, "{}{}{}".format(fbody))
             # Leave this commented out for now. I haven't decided how to make fish leave.
             #if active == 1 and fish_status == 1 and game_status[network][chan]['swimaway'] <= int(time()):
             #    conn.message(chan, "The fish swam away.")
