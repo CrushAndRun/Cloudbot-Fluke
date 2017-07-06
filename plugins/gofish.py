@@ -11,19 +11,19 @@ from cloudbot.event import EventType
 from cloudbot.util import botvars
 
 fish = [		 
-                " ¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸><(((º> ᴬ FᴵSᴴ! ",
+         " ¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸><(((º> ᴬ FᴵSᴴ! ",
 
-		 "  ,/..     "
-         " <')   `=< *´¨`*.¸¸.*´¨`*.¸¸.*´¨`*.¸¸.* ᴼᴹᴳ ᴬ FᴵSᴴ! "
-         " ``\\```   ",
+         "   ,/..    "
+         "<')   `=< *´¨`*.¸¸.*´¨`*.¸¸.*´¨`*.¸¸.* ᴼᴹᴳ ᴬ FᴵSᴴ! "
+         "  ``\\```   ",
 
-	     "                          \        "
+         "                          \        "
          "                          /\       "
          "*.¸¸.*´¨`*.¸¸.*´¨`*.¸¸. >=)'>  ᴳᴼ FᴵSᴴ! "
          "                         \\/       "
          "                          /        ",
 
-		 "                            \      "
+         "                            \      "
          "                            }\     "
          "                      `\  .'  \    "
          "  *.¸¸.*´¨`*.¸¸.*´¨`*. }\/ ~~ o\   "
@@ -34,11 +34,11 @@ fish = [
          ]
 
 table = Table(
-    'gofish_2',
+    'gofish',
     botvars.metadata,
     Column('network', String),
     Column('name', String),
-    Column('reel', Integer),
+    Column('caught', Integer),
     Column('feed', Integer),
     Column('chan', String),
     PrimaryKeyConstraint('name', 'chan','network')
@@ -64,7 +64,7 @@ game_status structure
             'game_started':0|1,
             'no_fish_kick': 0|1,
             'fish_time': 'float', 
-            'hooked_time': 'float'
+            'catch_time': 'float'
         }
     }
 }
@@ -87,31 +87,30 @@ def load_optout(db):
             opt_out.append(chan)
 
 @hook.command("gofish", autohelp=False, permissions=["op"])
-def gofish(bot, chan, message, conn):
-    """This command starts a gofish in your channel, to stop fishing use @nofish"""
+def go_fish(bot, chan, message, conn):
+    """This command starts a gofish in your channel, to stop the game use @nofish"""
     global game_status
     if chan in opt_out:
         return
     elif not chan.startswith("#"):
-        return "If you're wanting some 'me' time that's cool but there's no gofish by yourself."
+        return "If you're wanting some 'me' time that's cool but there's no fishing by yourself."
     check = game_status[conn.name][chan]['game_on']
     if check:
         return "there is already a game running in {}.".format(chan)
     else:
         game_status[conn.name][chan]['game_on'] = 1
     set_fishtime(chan, conn)
-    message("Fish are swimming about, to catch fish use @reel, use @feed to save them.", chan)
+    message("Fish are swimming about, to catch fish use @catch, use @feed to save them.", chan)
 
 def set_fishtime(chan, conn):
     global game_status
     game_status[conn.name][chan]['next_fish_time'] = random.randint(int(time()) + 3600, int(time()) + 7200)
-    #game_status[conn.name][chan]['swimaway'] = game_status[conn.name][chan]['next_fish_time'] + 600
     game_status[conn.name][chan]['fish_status'] = 0
     return
 
 @hook.command("nofish", autohelp=False, permissions=["op"])
-def nofish(chan, conn):
-    """This command stops the gofish in your channel. Scores will be preserved"""
+def stop_hunt(chan, conn):
+    """This command stops the gofish game in your channel. Scores will be preserved"""
     global game_status
     if chan in opt_out:
         return
@@ -123,13 +122,13 @@ def nofish(chan, conn):
 
 @hook.command("fishkick", permissions=["op"])
 def no_fish_kick(text, chan, conn, notice):
-    """If the bot has OP or half-op in the channel you can specify @fishkick enable|disable so that people are kicked for reeling or feeding a non-existent fish. Default is off."""
+    """If the bot has OP or half-op in the channel you can specify @fishkick enable|disable so that people are kicked for catching or feeding a non-existent fish. Default is off."""
     global game_status
     if chan in opt_out:
         return
     if text.lower() == 'enable':
         game_status[conn.name][chan]['no_fish_kick'] = 1
-        return "users will now be kicked for reeling or feeding non-existent fish. The bot needs to have appropriate flags to be able to kick users for this to work."
+        return "users will now be kicked for catching or feeding non-existent fish. The bot needs to have appropriate flags to be able to kick users for this to work."
     elif text.lower() == 'disable':
         game_status[conn.name][chan]['no_fish_kick'] = 0
         return "kicking for non-existent fish has been disabled."
@@ -139,10 +138,7 @@ def no_fish_kick(text, chan, conn, notice):
 
 def generate_fish():
     """Try and randomize the fish message so people can't highlight on it/script against it."""
-    #ftail = random.choice(fish_tail)
     fbody = random.choice(fish)
-    #rb = random.randint(1, len(fbody) - 1)
-    #fbody = fbody[:rb] +  fbody[rb:]
     return (fbody)
 
 
@@ -165,67 +161,62 @@ def deploy_fish(message, bot):
                 game_status[network][chan]['fish_time'] = time()
                 fbody = generate_fish()
                 conn.message(chan, "{}{}{}".format(fbody))
-            # Leave this commented out for now. I haven't decided how to make fish leave.
-            #if active == 1 and fish_status == 1 and game_status[network][chan]['swimaway'] <= int(time()):
-            #    conn.message(chan, "The fish swam away.")
-            #    game_status[network][chan]['fish_status'] = 2
-            #    set_fishtime(chan, conn)
             continue
         continue
 
 
-def hit_or_miss(deploy, reel):
-    """This function calculates if the reel or feed will be successful."""
-    if reel - deploy < 1:
+def hit_or_miss(deploy, catch):
+    """This function calculates if the feed or catch will be successful."""
+    if catch - deploy < 1:
         return .05
-    elif 1 <= reel - deploy <= 7:
+    elif 1 <= catch - deploy <= 7:
         out = random.uniform(.60, .75)
         return out
     else:
         return 1
 
-def dbadd_entry(nick, chan, db, conn, reel, feed):
+def dbadd_entry(nick, chan, db, conn, catch, friend):
     """Takes care of adding a new row to the database."""
     query = table.insert().values(
         network = conn.name,
         chan = chan.lower(),
         name = nick.lower(),
-        hooked = reel,
-        feed = feeders)
+        caught = catch,
+        feed = friend)
     db.execute(query)
     db.commit()
 
-def dbupdate(nick, chan, db, conn, reel, feeders):
+def dbupdate(nick, chan, db, conn, catch, friend):
     """update a db row"""
-    if reel and not feeders:
+    if catch and not friend:
         query = table.update() \
             .where(table.c.network == conn.name) \
             .where(table.c.chan == chan.lower()) \
             .where(table.c.name == nick.lower()) \
-            .values(hooked = reel)
+            .values(caught = catch)
         db.execute(query)
         db.commit()
-    elif feeders and not reel:
+    elif friend and not catch:
         query = table.update() \
             .where(table.c.network == conn.name) \
             .where(table.c.chan == chan.lower()) \
             .where(table.c.name == nick.lower()) \
-            .values(feed = feeders)
+            .values(feed = friend)
         db.execute(query)
         db.commit()
 
-@hook.command("reel", autohelp=False)
-def reel(nick, chan, message, db, conn, notice):
-    """when there are fish swimming about use this command to catch them for dinner before someone else feeds it."""
+@hook.command("catch", "reel", "gaff", autohelp=False)
+def catch(nick, chan, message, db, conn, notice):
+    """when there are fish swimming about use this command to catch it."""
     global game_status, scripters
     if chan in opt_out:
         return
     network = conn.name
     score = ""
     out = ""
-    miss = ["SWISH! The fish got away!", "Your bait fell off!", "Better luck next time.", "You need a bigger rod lol, maybe next time!", "Your line snapped, learn2knot!", "Are you sure you're not a feeder with a small hook like that?!" ]
+    miss = ["SWISH! The fish got away!", "Your bait fell off!", "Better luck next time.", "You need a bigger rod lol, maybe next time!", "Your line snapped, learn2knot and try again!", "Try some BACON, the fish got away!" ]
     if not game_status[network][chan]['game_on']:
-        return "There is no active gofish right now. Use @gofish to start a game."
+        return "There is no game right now. Use @gofish to start a game."
     elif game_status[network][chan]['fish_status'] != 1:
         if game_status[network][chan]['no_fish_kick'] == 1:
             out = "KICK {} {} The last fish was already nabbed, try again with the next fish.".format(chan, nick)
@@ -233,27 +224,27 @@ def reel(nick, chan, message, db, conn, notice):
             return
         return "Heads up, the fish is already gone!"
     else: 
-        game_status[network][chan]['hooked_time'] = time()
+        game_status[network][chan]['catch_time'] = time()
         deploy = game_status[network][chan]['fish_time']
-        reel = game_status[network][chan]['hooked_time']
+        catch = game_status[network][chan]['catch_time']
         if nick.lower() in scripters:
-            if scripters[nick.lower()] > reel:
-                notice("You are in a cool down period, you can try again in {} seconds.".format(str(scripters[nick.lower()] - reel)))
+            if scripters[nick.lower()] > catch:
+                notice("You are in a cool down period, you can try again in {} seconds.".format(str(scripters[nick.lower()] - catch)))
                 return
-        chance = hit_or_miss(deploy, reel)
+        chance = hit_or_miss(deploy, catch)
         if not random.random() <= chance and chance > .05:
             out = random.choice(miss) + " You can try again in 7 seconds."
-            scripters[nick.lower()] = reel + 7 
+            scripters[nick.lower()] = catch + 7 
             return out
         if chance == .05:
-            out += "You tried catching the fish in {} seconds, that's mighty fast. Are you running a script for this game? Take a 2 hour cool down.".format(str(shoot - deploy))
-            scripters[nick.lower()] = reel + 7200
+            out += "You tried catching the fish in {} seconds, that's mighty fast. Are you running a script for this game? Take a 2 hour cool down.".format(str(catch - deploy))
+            scripters[nick.lower()] = catch + 7200
             if not random.random() <= chance:
                 return random.choice(miss) + " " + out
             else:
                 message(out)
         game_status[network][chan]['fish_status'] = 2
-        score = db.execute(select([table.c.hooked]) \
+        score = db.execute(select([table.c.caught]) \
             .where(table.c.network == conn.name) \
             .where(table.c.chan == chan.lower()) \
             .where(table.c.name == nick.lower())).fetchone()
@@ -264,14 +255,14 @@ def reel(nick, chan, message, db, conn, notice):
         else:
             score = 1
             dbadd_entry(nick, chan, db, conn, score, 0)
-        timer = "{:.3f}".format(reel - deploy)
+        timer = "{:.3f}".format(catch - deploy)
         fish = "fish" if score == 1 else "fishes"
         message("{} Perfect set, you hooked the fish in {} seconds! You have caught {} {} in {}.".format(nick, timer, score, fish, chan))
         set_fishtime(chan, conn)
 
-@hook.command("feed", autohelp=False)
+@hook.command("feed", "crackers", autohelp=False)
 def feed(nick, chan, message, db, conn, notice):
-    """when there are fish swimming about use this command to feed them and make friends before someone else catches it for dinner."""
+    """when there are fish swimming about use this command to feed them and make friends."""
     global game_status, scripters
     if chan in opt_out:
         return
@@ -280,36 +271,36 @@ def feed(nick, chan, message, db, conn, notice):
     score = ""
     miss = ["How odd, the fish doesn't want to be your friend.", "The fish turned its nose up, try feeding it some crackers?", "You scared the fish away, try one of these? https://x0.no/099ia" ]
     if not game_status[network][chan]['game_on']:
-        return "There is no active gofish right now. Use @gofish to start a game."
+        return "There is no game right now. Use @gofish to start a game."
     elif game_status[network][chan]['fish_status'] != 1:
         if game_status[network][chan]['no_fish_kick'] == 1:
-            out = "KICK {} {} The last fish was already nabbed, try again with the next fish.".format(chan, nick)
+            out = "KICK {} {} Pay attention, the fish is already gone!".format(chan, nick)
             conn.send(out)
             return
         return "Heads up, the fish is already gone!"
     else:
-        game_status[network][chan]['hooked_time'] = time()
+        game_status[network][chan]['catch_time'] = time()
         deploy = game_status[network][chan]['fish_time']
-        reel = game_status[network][chan]['hooked_time']
+        catch = game_status[network][chan]['catch_time']
         if nick.lower() in scripters:
-            if scripters[nick.lower()] > reel:
-                notice("You are in a cool down period, you can try again in {} seconds.".format(str(scripters[nick.lower()] - reel)))
+            if scripters[nick.lower()] > catch:
+                notice("You are in a cool down period, you can try again in {} seconds.".format(str(scripters[nick.lower()] - catch)))
                 return
-        chance = hit_or_miss(deploy, reel)
+        chance = hit_or_miss(deploy, catch)
         if not random.random() <= chance and chance > .05:
             out = random.choice(miss) + " You can try again in 7 seconds."
-            scripters[nick.lower()] = reel + 7
+            scripters[nick.lower()] = catch + 7
             return out
         if chance == .05:
-            out += "You tried feeding that duck in {} seconds, that's mighty fast. Are you running a script for this game? Take a 2 hour cool down.".format(str(shoot - deploy))
-            scripters[nick.lower()] = reel + 7200
+            out += "You tried saving that fish in {} seconds, that's mighty fast. Are you running a script for this game? Take a 2 hour cool down.".format(str(catch - deploy))
+            scripters[nick.lower()] = catch + 7200
             if not random.random() <= chance:
                 return random.choice(miss) + " " + out
             else:
                 message(out)
 
         game_status[network][chan]['fish_status'] = 2
-        score = db.execute(select([table.c.fed]) \
+        score = db.execute(select([table.c.feed]) \
             .where(table.c.network == conn.name) \
             .where(table.c.chan == chan.lower()) \
             .where(table.c.name == nick.lower())).fetchone()
@@ -321,26 +312,26 @@ def feed(nick, chan, message, db, conn, notice):
             score = 1
             dbadd_entry(nick, chan, db, conn, 0, score)
         fish = "fish" if score == 1 else "fishes"
-        timer = "{:.3f}".format(reel - deploy)
-        message("{} You fed that fish in {} seconds! You have made friends with {} {} in {}.".format(nick, timer, score, fish, chan))
+        timer = "{:.3f}".format(catch - deploy)
+        message("{} You saved a fish in {} seconds! You have made friends with {} {} in {}.".format(nick, timer, score, fish, chan))
         set_fishtime(chan,conn)
 
 def smart_truncate(content, length=320, suffix='...'):
     if len(content) <= length:
         return content
     else:
-        return content[:length].rsplit(' • ', 1)[0]+suffix
+        return content[:length].rsplit('  ', 1)[0]+suffix
 
 
-@hook.command("feeders", autohelp=False)
-def feeders(text, chan, conn, db):
-    """Prints a list of the top fish feeders in the channel, if 'global' is specified all channels in the database are included."""
+@hook.command("friends", autohelp=False)
+def friends(text, chan, conn, db):
+    """Prints a list of the top fish friends in the channel, if 'global' is specified all channels in the database are included."""
     if chan in opt_out:
         return
-    feeders = defaultdict(int)
+    friends = defaultdict(int)
     out = ""
     if text.lower() == 'global':
-        out = "Fish feeders scores across the network: "
+        out = "Fish friend scores across the network: "
         scores = db.execute(select([table.c.name, table.c.feed]) \
             .where(table.c.network == conn.name) \
             .order_by(desc(table.c.feed)))
@@ -348,40 +339,40 @@ def feeders(text, chan, conn, db):
             for row in scores:
                 if row[1] == 0:
                     continue
-                feeders[row[0]] += row[1]
+                friends[row[0]] += row[1]
         else:
-            return "it appears no one has fed the fish yet."
+            return "it appears no one has friended any fish yet."
     else:
-        out = "Fish feeder scores in {}: ".format(chan)
-        scores = db.execute(select([table.c.name, table.c.fed]) \
+        out = "Fish friend scores in {}: ".format(chan)
+        scores = db.execute(select([table.c.name, table.c.feed]) \
             .where(table.c.network == conn.name) \
             .where(table.c.chan == chan.lower()) \
-            .order_by(desc(table.c.fed)))
+            .order_by(desc(table.c.feed)))
         if scores:
             for row in scores:
                 if row[1] == 0:
                     continue
-                feeders[row[0]] += row[1]
+                friends[row[0]] += row[1]
         else:
-            return "it appears no one has fed the fish yet."
+            return "it appears no one has friended any fish yet."
 
-    topfeeders = sorted(feeders.items(), key=operator.itemgetter(1), reverse = True)
-    out += ' • '.join(["{}: {}".format('\x02' + k[:1] + u'\u200b' + k[1:] + '\x02', str(v))  for k, v in topfeeders])
+    topfriends = sorted(friends.items(), key=operator.itemgetter(1), reverse = True)
+    out += '  '.join(["{}: {}".format('\x02' + k[:1] + u'\u200b' + k[1:] + '\x02', str(v))  for k, v in topfriends])
     out = smart_truncate(out)
     return out
 
-@hook.command("catchers", autohelp=False)
-def catchers(text, chan, conn, db):
-    """Prints a list of the top fisherman in the channel, if 'global' is specified all channels in the database are included."""
+@hook.command("caught", autohelp=False)
+def caught(text, chan, conn, db):
+    """Prints a list of the top fish catchers in the channel, if 'global' is specified all channels in the database are included."""
     if chan in opt_out:
         return
     catchers = defaultdict(int)
     out = ""
     if text.lower() == 'global':
-        out = "Fisherman scores across the network: "
-        scores = db.execute(select([table.c.name, table.c.hooked]) \
+        out = "Fish catchers scores across the network: "
+        scores = db.execute(select([table.c.name, table.c.caught]) \
             .where(table.c.network == conn.name) \
-            .order_by(desc(table.c.hooked)))
+            .order_by(desc(table.c.caught)))
         if scores:
             for row in scores:
                 if row[1] == 0:
@@ -390,11 +381,11 @@ def catchers(text, chan, conn, db):
         else:
             return "it appears no one has caught any fish yet."
     else:
-        out = "Fisherman scores in {}: ".format(chan)
-        scores = db.execute(select([table.c.name, table.c.hooked]) \
+        out = "Fish catchers scores in {}: ".format(chan)
+        scores = db.execute(select([table.c.name, table.c.caught]) \
             .where(table.c.network == conn.name) \
             .where(table.c.chan == chan.lower()) \
-            .order_by(desc(table.c.hooked)))
+            .order_by(desc(table.c.caught)))
         if scores:
             for row in scores:
                 if row[1] == 0:
@@ -404,7 +395,7 @@ def catchers(text, chan, conn, db):
             return "it appears no one has caught any fish yet."
 
     topcatchers = sorted(catchers.items(), key=operator.itemgetter(1), reverse = True)
-    out += ' • '.join(["{}: {}".format('\x02' + k[:1] + u'\u200b' + k[1:] + '\x02', str(v))  for k, v in topcatchers])
+    out += '  '.join(["{}: {}".format('\x02' + k[:1] + u'\u200b' + k[1:] + '\x02', str(v))  for k, v in topcatchers])
     out = smart_truncate(out)
     return out
 
@@ -416,7 +407,7 @@ def fishforgive(text):
         scripters[text.lower()] = 0
         return "{} has been removed from the mandatory cooldown period.".format(text)
     else:
-        return "I couldn't find anyone banned from gofish by that nick"
+        return "I couldn't find anyone banned from the game by that nick"
 
 @hook.command("gofish_opt_out", permissions=["op", "ignore"], autohelp=False)
 def gofish_opt_out(text, chan, db, conn):
@@ -457,48 +448,48 @@ def fish_user(text, nick, chan, conn, db, message):
     name = nick.lower()
     if text:
         name = text.split()[0].lower()
-    fishes = defaultdict(int)
-    scores = db.execute(select([table.c.name, table.c.chan, table.c.hooked, table.c.fed])
+    fish = defaultdict(int)
+    scores = db.execute(select([table.c.name, table.c.chan, table.c.caught, table.c.feed])
         .where(table.c.network == conn.name)
         .where(table.c.name == name)).fetchall()
     if scores:
         for row in scores:
             if row["chan"].lower() == chan.lower():
-                fish["chanhooked"] += row["hooked"]
-                fish["chanfed"] += row["fed"]
-            fish["caught"] += row["hooked"]
-            fish["feeders"] += row["fed"]
+                fish["chancaught"] += row["caught"]
+                fish["chanfriends"] += row["feed"]
+            fish["caught"] += row["caught"]
+            fish["friend"] += row["feed"]
             fish["chans"] += 1
         if fish["chans"] == 1:
-            message("{} has caught {} and fed {} fish in {}.".format(name, fish["chanhooked"], fish["chanfed"], chan))
+            message("{} has caught {} and saved {} fish in {}.".format(name, fish["chancaught"], fish["chanfriends"], chan))
             return
-        hooked_average = int(fish["caught"] / fish["chans"])
-        fed_average = int(fish["feeders"] / fish["chans"])
-        message("\x02{}'s\x02 fish stats: \x02{}\x02 caught and \x02{}\x02 fed in {}. Across {} channels: \x02{}\x02 caught and \x02{}\x02 fed. Averaging \x02{}\x02 hooked and \x02{}\x02 fed per channel.".format(name, fish["chanhooked"], fish["chanfed"], chan, fish["chans"], fish["caught"], ducks["fed"], hooked_average, fed_average))
+        catch_average = int(fish["caught"] / fish["chans"])
+        friend_average = int(fish["friend"] / fish["chans"])
+        message("\x02{}'s\x02 gofish stats: \x02{}\x02 caught and \x02{}\x02 saved in {}. Across {} channels: \x02{}\x02 caught and \x02{}\x02 saved. Averaging \x02{}\x02 catches and \x02{}\x02 saves per channel.".format(name, fish["chancaught"], fish["chanfriends"], chan, fish["chans"], fish["caught"], fish["friend"], catch_average, friend_average))
     else:
-        return "It appears {} has not participated in gofish.".format(name)
+        return "It appears {} has not participated in the gofish game.".format(name)
 
-@hook.command("fishstats", autohelp=False)
+@hook.command("fishtats", autohelp=False)
 def fish_stats(chan, conn, db, message):
     """Prints gofish statistics for the entire channel and totals for the network."""
-    fishes = defaultdict(int)
-    scores = db.execute(select([table.c.name, table.c.chan, table.c.hooked, table.c.fed])
+    fish = defaultdict(int)
+    scores = db.execute(select([table.c.name, table.c.chan, table.c.caught, table.c.feed])
         .where(table.c.network == conn.name)).fetchall()
     if scores:
-        fish["feedchan"] = defaultdict(int)
-        fish["hookchan"] = defaultdict(int)
+        fish["friendchan"] = defaultdict(int)
+        fish["catchchan"] = defaultdict(int)
         for row in scores:
-            fish["feedchan"][row["chan"]] += row["fed"]
-            fish["hookchan"][row["chan"]] += row["hooked"]
+            fish["friendchan"][row["chan"]] += row["feed"]
+            fish["catchchan"][row["chan"]] += row["caught"]
             #fish["chans"] += 1
             if row["chan"].lower() == chan.lower():
-                fish["chanhooked"] += row["hooked"]
-                fish["chanfeeders"] += row["fed"]
-            fish["caught"] += row["hooked"]
-            fish["feeders"] += row["fed"]
-        fish["chans"] = int((len(fish["feederschan"]) + len(fish["caughtchan"])) / 2)
-        caughtchan, caughtscore = sorted(fish["caughtchan"].items(), key=operator.itemgetter(1), reverse = True)[0]
-        feederschan, feedersscore = sorted(fish["feederschan"].items(), key=operator.itemgetter(1), reverse =True)[0]
-        message("\x02Fish Stats:\x02 {} caught and {} fed in \x02{}\x02. Across {} channels \x02{}\x02 fish have been caught and \x02{}\x02 fed. \x02Top Channels:\x02 \x02{}\x02 with {} caught and \x02{}\x02 with {} fed".format(fish["chancaught"], fish["chanfeeders"], chan, fish["chans"], fish["caught"], fish["feeders"], caughtchan, caughtscore, feederschan, feedersscore))
+                fish["chancaught"] += row["caught"]
+                fish["chanfriends"] += row["feed"]
+            fish["caught"] += row["caught"]
+            fish["friend"] += row["feed"]
+        fish["chans"] = int((len(fish["friendchan"]) + len(fish["catchchan"])) / 2)
+        catchchan, catchscore = sorted(fish["catchchan"].items(), key=operator.itemgetter(1), reverse = True)[0]
+        friendchan, friendscore = sorted(fish["friendchan"].items(), key=operator.itemgetter(1), reverse =True)[0]
+        message("\x02Gofish Stats:\x02 {} caught and {} saved in \x02{}\x02. Across {} channels \x02{}\x02 fish have been caught and \x02{}\x02 saved. \x02Top Channels:\x02 \x02{}\x02 with {} catches and \x02{}\x02 with {} saves".format(fish["chancaught"], fish["chanfriends"], chan, fish["chans"], fish["caught"], fish["friend"], catchchan, catchscore, friendchan, friendscore))
     else:
-        return "It looks like there has been no gofish activity in this channel or network."
+        return "It looks like there has been no gofish activity on this channel or network."
