@@ -10,27 +10,27 @@ from cloudbot import hook
 from cloudbot.event import EventType
 from cloudbot.util import botvars
 
-fish = [" ¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸><(((º> ᴬ FᴵSᴴ! "]
-
+fish = [" ¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸><(((º> OMG A FISH! "]
+#
 #         "   ,/..    "
-#         "<')   `=< *´¨`*.¸¸.*´¨`*.¸¸.*´¨`*.¸¸.* ᴼᴹᴳ ᴬ FᴵSᴴ! "
+#         "<')   `=< *´¨`*.¸¸.*´¨`*.¸¸.*´¨`*.¸¸.* ??? ? F?S?! "
 #         "  ``\\```   ",
 #
-#         "                          \        "
-#         "                          /\       "
-#         "*.¸¸.*´¨`*.¸¸.*´¨`*.¸¸. >=)'>  ᴳᴼ FᴵSᴴ! "
-#         "                         \\/       "
-#         "                          /        ",
+#        "                          \        "
+#        "                          /\       "
+#        "*.¸¸.*´¨`*.¸¸.*´¨`*.¸¸. >=)'>  ?? F?S?! "
+#        "                         \\/       "
+#        "                          /        ",
 #
-#         "                            \      "
-#         "                            }\     "
-#         "                      `\  .'  \    "
-#         "  *.¸¸.*´¨`*.¸¸.*´¨`*. }\/ ~~ o\   "
-#         "  *.¸¸.*´¨`*.¸¸.*´¨`*. }/\  )) _}  ＯＭＧ Ａ ＦＩＳＨ！"
-#         "                      ,/  /`.  /`  "
-#         "                            \}/    "
-#         "                             /     "
-#         ]
+#        "                            \      "
+#        "                            }\     "
+#        "                      `\  .'  \    "
+#        "  *.¸¸.*´¨`*.¸¸.*´¨`*. }\/ ~~ o\   "
+#        "  *.¸¸.*´¨`*.¸¸.*´¨`*. }/\  )) _}  ??? ? ?????"
+#        "                      ,/  /`.  /`  "
+#        "                            \}/    "
+#        "                             /     "
+#        ]
 
 table = Table(
     'gofish',
@@ -475,10 +475,10 @@ def fish_stats(chan, conn, db, message):
     scores = db.execute(select([table.c.name, table.c.chan, table.c.caught, table.c.feed])
         .where(table.c.network == conn.name)).fetchall()
     if scores:
-        fish["friendchan"] = defaultdict(int)
+        fish["feedchan"] = defaultdict(int)
         fish["catchchan"] = defaultdict(int)
         for row in scores:
-            fish["friendchan"][row["chan"]] += row["feed"]
+            fish["feedchan"][row["chan"]] += row["feed"]
             fish["catchchan"][row["chan"]] += row["caught"]
             #fish["chans"] += 1
             if row["chan"].lower() == chan.lower():
@@ -486,9 +486,9 @@ def fish_stats(chan, conn, db, message):
                 fish["chanfeeders"] += row["feed"]
             fish["caught"] += row["caught"]
             fish["friend"] += row["feed"]
-        fish["chans"] = int((len(fish["friendchan"]) + len(fish["catchchan"])) / 2)
+        fish["chans"] = int((len(fish["feedchan"]) + len(fish["catchchan"])) / 2)
         catchchan, catchscore = sorted(fish["catchchan"].items(), key=operator.itemgetter(1), reverse = True)[0]
-        friendchan, feederscore = sorted(fish["friendchan"].items(), key=operator.itemgetter(1), reverse =True)[0]
-        message("\x02Gofish Stats:\x02 {} caught and {} saved in \x02{}\x02. Across {} channels \x02{}\x02 fish have been caught and \x02{}\x02 saved. \x02Top Channels:\x02 \x02{}\x02 with {} catches and \x02{}\x02 with {} saves".format(fish["chancaught"], fish["chanfeeders"], chan, fish["chans"], fish["caught"], fish["friend"], catchchan, catchscore, friendchan, feederscore))
+        feedchan, feederscore = sorted(fish["feedchan"].items(), key=operator.itemgetter(1), reverse =True)[0]
+        message("\x02Gofish Stats:\x02 {} caught and {} saved in \x02{}\x02. Across {} channels \x02{}\x02 fish have been caught and \x02{}\x02 saved. \x02Top Channels:\x02 \x02{}\x02 with {} catches and \x02{}\x02 with {} saves".format(fish["chancaught"], fish["chanfeeders"], chan, fish["chans"], fish["caught"], fish["friend"], catchchan, catchscore, feedchan, feederscore))
     else:
         return "It looks like there has been no gofish activity on this channel or network."
