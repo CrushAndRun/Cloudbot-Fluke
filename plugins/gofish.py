@@ -262,7 +262,7 @@ def catch(nick, chan, message, db, conn, notice):
 
 @hook.command("feed", "crackers", autohelp=False)
 def feed(nick, chan, message, db, conn, notice):
-    """when there are fish swimming about use this command to feed them and make friends."""
+    """when there are fish swimming about use this command to feed them and make feeders."""
     global game_status, scripters
     if chan in opt_out:
         return
@@ -313,7 +313,7 @@ def feed(nick, chan, message, db, conn, notice):
             dbadd_entry(nick, chan, db, conn, 0, score)
         fish = "fish" if score == 1 else "fishes"
         timer = "{:.3f}".format(catch - deploy)
-        message("{} You saved a fish in {} seconds! You have made friends with {} {} in {}.".format(nick, timer, score, fish, chan))
+        message("{} You saved a fish in {} seconds! You have made feeders with {} {} in {}.".format(nick, timer, score, fish, chan))
         set_fishtime(chan,conn)
 
 def smart_truncate(content, length=320, suffix='...'):
@@ -323,12 +323,12 @@ def smart_truncate(content, length=320, suffix='...'):
         return content[:length].rsplit('  ', 1)[0]+suffix
 
 
-@hook.command("friends", autohelp=False)
-def friends(text, chan, conn, db):
-    """Prints a list of the top fish friends in the channel, if 'global' is specified all channels in the database are included."""
+@hook.command("feeders", autohelp=False)
+def feeders(text, chan, conn, db):
+    """Prints a list of the top fish feeders in the channel, if 'global' is specified all channels in the database are included."""
     if chan in opt_out:
         return
-    friends = defaultdict(int)
+    feeders = defaultdict(int)
     out = ""
     if text.lower() == 'global':
         out = "Fish friend scores across the network: "
@@ -339,7 +339,7 @@ def friends(text, chan, conn, db):
             for row in scores:
                 if row[1] == 0:
                     continue
-                friends[row[0]] += row[1]
+                feeders[row[0]] += row[1]
         else:
             return "it appears no one has friended any fish yet."
     else:
@@ -352,12 +352,12 @@ def friends(text, chan, conn, db):
             for row in scores:
                 if row[1] == 0:
                     continue
-                friends[row[0]] += row[1]
+                feeders[row[0]] += row[1]
         else:
             return "it appears no one has friended any fish yet."
 
-    topfriends = sorted(friends.items(), key=operator.itemgetter(1), reverse = True)
-    out += '  '.join(["{}: {}".format('\x02' + k[:1] + u'\u200b' + k[1:] + '\x02', str(v))  for k, v in topfriends])
+    topfeeders = sorted(feeders.items(), key=operator.itemgetter(1), reverse = True)
+    out += '  '.join(["{}: {}".format('\x02' + k[:1] + u'\u200b' + k[1:] + '\x02', str(v))  for k, v in topfeeders])
     out = smart_truncate(out)
     return out
 
@@ -456,16 +456,16 @@ def fish_user(text, nick, chan, conn, db, message):
         for row in scores:
             if row["chan"].lower() == chan.lower():
                 fish["chancaught"] += row["caught"]
-                fish["chanfriends"] += row["feed"]
+                fish["chanfeeders"] += row["feed"]
             fish["caught"] += row["caught"]
             fish["friend"] += row["feed"]
             fish["chans"] += 1
         if fish["chans"] == 1:
-            message("{} has caught {} and saved {} fish in {}.".format(name, fish["chancaught"], fish["chanfriends"], chan))
+            message("{} has caught {} and saved {} fish in {}.".format(name, fish["chancaught"], fish["chanfeeders"], chan))
             return
         catch_average = int(fish["caught"] / fish["chans"])
         friend_average = int(fish["friend"] / fish["chans"])
-        message("\x02{}'s\x02 gofish stats: \x02{}\x02 caught and \x02{}\x02 saved in {}. Across {} channels: \x02{}\x02 caught and \x02{}\x02 saved. Averaging \x02{}\x02 catches and \x02{}\x02 saves per channel.".format(name, fish["chancaught"], fish["chanfriends"], chan, fish["chans"], fish["caught"], fish["friend"], catch_average, friend_average))
+        message("\x02{}'s\x02 gofish stats: \x02{}\x02 caught and \x02{}\x02 saved in {}. Across {} channels: \x02{}\x02 caught and \x02{}\x02 saved. Averaging \x02{}\x02 catches and \x02{}\x02 saves per channel.".format(name, fish["chancaught"], fish["chanfeeders"], chan, fish["chans"], fish["caught"], fish["friend"], catch_average, friend_average))
     else:
         return "It appears {} has not participated in the gofish game.".format(name)
 
@@ -484,12 +484,12 @@ def fish_stats(chan, conn, db, message):
             #fish["chans"] += 1
             if row["chan"].lower() == chan.lower():
                 fish["chancaught"] += row["caught"]
-                fish["chanfriends"] += row["feed"]
+                fish["chanfeeders"] += row["feed"]
             fish["caught"] += row["caught"]
             fish["friend"] += row["feed"]
         fish["chans"] = int((len(fish["friendchan"]) + len(fish["catchchan"])) / 2)
         catchchan, catchscore = sorted(fish["catchchan"].items(), key=operator.itemgetter(1), reverse = True)[0]
-        friendchan, friendscore = sorted(fish["friendchan"].items(), key=operator.itemgetter(1), reverse =True)[0]
-        message("\x02Gofish Stats:\x02 {} caught and {} saved in \x02{}\x02. Across {} channels \x02{}\x02 fish have been caught and \x02{}\x02 saved. \x02Top Channels:\x02 \x02{}\x02 with {} catches and \x02{}\x02 with {} saves".format(fish["chancaught"], fish["chanfriends"], chan, fish["chans"], fish["caught"], fish["friend"], catchchan, catchscore, friendchan, friendscore))
+        friendchan, feederscore = sorted(fish["friendchan"].items(), key=operator.itemgetter(1), reverse =True)[0]
+        message("\x02Gofish Stats:\x02 {} caught and {} saved in \x02{}\x02. Across {} channels \x02{}\x02 fish have been caught and \x02{}\x02 saved. \x02Top Channels:\x02 \x02{}\x02 with {} catches and \x02{}\x02 with {} saves".format(fish["chancaught"], fish["chanfeeders"], chan, fish["chans"], fish["caught"], fish["friend"], catchchan, catchscore, friendchan, feederscore))
     else:
         return "It looks like there has been no gofish activity on this channel or network."
