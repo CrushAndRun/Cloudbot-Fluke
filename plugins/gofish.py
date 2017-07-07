@@ -100,7 +100,7 @@ def go_fish(bot, chan, message, conn):
     else:
         game_status[conn.name][chan]['game_on'] = 1
     set_fishtime(chan, conn)
-    message("Fish are swimming about, to catch fish use @catch, use @feed to save them.", chan)
+    message("Fish are swimming about, to catch fish use @catch|reel|gaff, use @feed|crackers to save them.", chan)
 
 def set_fishtime(chan, conn):
     global game_status
