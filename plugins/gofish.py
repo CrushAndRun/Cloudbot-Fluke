@@ -10,6 +10,7 @@ from cloudbot import hook
 from cloudbot.event import EventType
 from cloudbot.util import botvars
 
+fish_tail = [" "," "]
 fish = [" ¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸><(((º> OMG A FISH! "]
 #
 #         "   ,/..    "
@@ -138,7 +139,8 @@ def no_fish_kick(text, chan, conn, notice):
 def generate_fish():
     """Try and randomize the fish message so people can't highlight on it/script against it."""
     fbody = random.choice(fish)
-    return (fbody)
+    ftail = random.choice(fish_tail)
+    return (fbody, ftail)
 
 
 @hook.periodic(11, initial_interval=11)
@@ -159,7 +161,7 @@ def deploy_fish(message, bot):
                 game_status[network][chan]['fish_status'] = 1
                 game_status[network][chan]['fish_time'] = time()
                 fbody = generate_fish()
-                conn.message(chan, "{}{}{}".format(fbody))
+                conn.message(chan, "{}{}".format(fbody, ftail)
             continue
         continue
 
