@@ -10,13 +10,11 @@ from cloudbot import hook
 from cloudbot.event import EventType
 from cloudbot.util import botvars
 
-fish_tail = [" "," "]
-fish = [" ～～～～～～～～～～～～><(((º> ᴼᴹᴳ ᴬ FᴵSᴴ! ",
 
-        " ¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸><⁽⁽⁽⁽⁽◐> FᴵSᴴ! ",
+fish = ["><(((º> ᴼᴹᴳ ᴬ FᴵSᴴ!", "><⁽⁽⁽⁽⁽◐> FᴵSᴴ!", "》((((◕> ᴹᵒᴬʳ FⁱSʰ!"]
 
-        " •*´¨`*•.¸¸.•*´¨`*•.¸¸.•*´¨`*•.¸¸.•》((((◕> ᴹᵒᴬʳ FⁱSʰ! "
-        ]
+fish_tail = ["～～～～～～～～～～～～", "¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·", "•*´¨`*•.¸¸.•*´¨`*•.¸¸.•*´¨`*•.¸¸.•"]
+
 
 table = Table(
     'gofish',
