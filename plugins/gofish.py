@@ -11,27 +11,12 @@ from cloudbot.event import EventType
 from cloudbot.util import botvars
 
 fish_tail = [" "," "]
-fish = [" ¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸><(((º> OMG A FISH! "]
-#
-#         "   ,/..    "
-#         "<')   `=< *´¨`*.¸¸.*´¨`*.¸¸.*´¨`*.¸¸.* ??? ? F?S?! "
-#         "  ``\\```   ",
-#
-#        "                          \        "
-#        "                          /\       "
-#        "*.¸¸.*´¨`*.¸¸.*´¨`*.¸¸. >=)'>  ?? F?S?! "
-#        "                         \\/       "
-#        "                          /        ",
-#
-#        "                            \      "
-#        "                            }\     "
-#        "                      `\  .'  \    "
-#        "  *.¸¸.*´¨`*.¸¸.*´¨`*. }\/ ~~ o\   "
-#        "  *.¸¸.*´¨`*.¸¸.*´¨`*. }/\  )) _}  ??? ? ?????"
-#        "                      ,/  /`.  /`  "
-#        "                            \}/    "
-#        "                             /     "
-#        ]
+fish = [" ～～～～～～～～～～～～><(((º> ᴼᴹᴳ ᴬ FᴵSᴴ! ",
+
+        " ¸.·´¯`·.¸¸.·´¯`·.¸¸.·´¯`·.¸><⁽⁽⁽⁽⁽◐> FᴵSᴴ! ",
+
+        " •*´¨`*•.¸¸.•*´¨`*•.¸¸.•*´¨`*•.¸¸.•》((((◕> ᴹᵒᴬʳ FⁱSʰ! "
+        ]
 
 table = Table(
     'gofish',
@@ -161,7 +146,7 @@ def deploy_fish(message, bot):
                 game_status[network][chan]['fish_status'] = 1
                 game_status[network][chan]['fish_time'] = time()
                 fbody = generate_fish()
-                conn.message(chan, "{}{}".format(fbody, ftail)
+                conn.message(chan, "{}{}".format(fbody, ftail))
             continue
         continue
 
