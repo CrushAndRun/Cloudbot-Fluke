@@ -312,7 +312,7 @@ def feed(nick, chan, message, db, conn, notice):
             dbadd_entry(nick, chan, db, conn, 0, score)
         fish = "fish" if score == 1 else "fishes"
         timer = "{:.3f}".format(catch - deploy)
-        message("{} You saved a fish in {} seconds! You have made feeders with {} {} in {}.".format(nick, timer, score, fish, chan))
+        message("{} You saved a fish in {} seconds! You have made friends with {} {} in {}.".format(nick, timer, score, fish, chan))
         set_fishtime(chan,conn)
 
 def smart_truncate(content, length=320, suffix='...'):
@@ -468,7 +468,7 @@ def fish_user(text, nick, chan, conn, db, message):
     else:
         return "It appears {} has not participated in the gofish game.".format(name)
 
-@hook.command("fishtats", autohelp=False)
+@hook.command("fishstats", autohelp=False)
 def fish_stats(chan, conn, db, message):
     """Prints gofish statistics for the entire channel and totals for the network."""
     fish = defaultdict(int)
