@@ -246,7 +246,7 @@ def catch(nick, chan, message, db, conn, notice):
 
 @hook.command("feed", "crackers", autohelp=False)
 def feed(nick, chan, message, db, conn, notice):
-    """when there are fish swimming about use this command to feed them and make feeders."""
+    """when there are fish swimming about use this command to feed them and make friends."""
     global game_status, scripters
     if chan in opt_out:
         return
@@ -325,7 +325,7 @@ def feeders(text, chan, conn, db):
                     continue
                 feeders[row[0]] += row[1]
         else:
-            return "it appears no one has friended any fish yet."
+            return "it appears no one has fed any fish yet."
     else:
         out = "Fish friend scores in {}: ".format(chan)
         scores = db.execute(select([table.c.name, table.c.feed]) \
