@@ -145,7 +145,7 @@ def deploy_fish(message, bot):
                 #deploy a fish to channel
                 game_status[network][chan]['fish_status'] = 1
                 game_status[network][chan]['fish_time'] = time()
-                fbody = generate_fish()
+                fbody, ftail = generate_fish()
                 conn.message(chan, "{}{}".format(fbody, ftail))
             continue
         continue
