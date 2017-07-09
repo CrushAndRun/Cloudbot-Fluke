@@ -87,7 +87,8 @@ def go_fish(bot, chan, message, conn):
 
 def set_fishtime(chan, conn):
     global game_status
-    game_status[conn.name][chan]['next_fish_time'] = random.randint(int(time()) + 3600, int(time()) + 7200)
+#    game_status[conn.name][chan]['next_fish_time'] = random.randint(int(time()) + 3600, int(time()) + 7200)
+    game_status[conn.name][chan]['next_duck_time'] = random.randint(int(time()) + 2700, int(time()) + 7200)
     game_status[conn.name][chan]['fish_status'] = 0
     return
 
