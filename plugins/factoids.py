@@ -72,7 +72,7 @@ def del_factoid(async, db, word):
 @asyncio.coroutine
 @hook.command("remember", permissions=["addfactoid"])
 def remember(text, nick, db, notice, async):
-    """<word> [+]<data> - remembers <data> with <word> - add + to <data> to append - Example: remember mudkips all your mudkips are belongs to me!"""
+    """<word> [+]<data> - remembers <data> with <word> - add + to <data> to append - Example: remember mudkipz all your mudkipz are belong to me!"""
 
     try:
         word, data = text.split(None, 1)
