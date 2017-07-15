@@ -16,9 +16,7 @@
 
 from cloudbot import hook
 from bs4 import BeautifulSoup
-from optparse import OptionParser
 import urllib.parse
-import urllib3
 
 DEGREE_SYMBOL = "F"
 
@@ -43,7 +41,6 @@ class ParseError(Exception):
     def __init__(self, lookup):
         Exception.__init__(
             self, """Couldn't parse the website: lookup {0} failed
-
 Please report what you did to get this error and this full Python traceback
 to ian@ianweller.org. Thanks!""".format(lookup))
 
@@ -52,27 +49,22 @@ to ian@ianweller.org. Thanks!""".format(lookup))
 def get_weather(text):
     """
     Retrieves weather and forecast data for a given location.
-
     Data is presented in a dict with three main elements: "location" (the
     location presented by TFW), "current" (current weather data) and "forecast"
     (a forecast of the next two days, with highs, lows, and what the weather
     will be like).
-
     "current" is a dictionary with three elements: "temperature" (an integer),
     "weather" (a list of descriptive elements about the weather, e.g., "ITS
     FUCKING HOT", which may be coupled with something such as "AND THUNDERING")
     and "remark" (a string printed by the server which is meant to be witty but
     is sometimes not. each to their own, I guess).
-
     "forecast" is a list of dictionaries, which each contain the keys "day" (a
     three-letter string consisting of the day of week), "high" and "low"
     (integers representing the relative extreme temperature of the day), and
     "weather" (a basic description of the weather, such as "Scattered
     Thunderstorms").
-
     The default is for temperatures to be in Fahrenheit. If you're so inclined,
     you can pass True as a second variable and get temperatures in Celsius.
-
     If you need a degree symbol, you can use thefuckingweather.DEGREE_SYMBOL.
     """
     # Generate query string
@@ -151,8 +143,8 @@ def get_weather(text):
                                        "high": highs[i],
                                        "low": lows[i],
                                        "weather": forecasts[i]})
-    
+
     tfw = ("The Fucking Weather for " "({0})".format(return_val["location"])) + ("{0}{1}?! {2}".format(return_val["current"]["temperature"],
                                     DEGREE_SYMBOL,
                                     return_val["current"]["weather"][0])) + " " + (return_val["current"]["remark"])
-    return tfw
+return tfw
