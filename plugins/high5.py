@@ -2,7 +2,7 @@ from cloudbot import hook
 from random import choice
 
 
-@hook.command("high5", "hi5", "^5", "highfive")
+@hook.command("high5", "hi5", "highfive")
 def highfive(nick, text):
     """Highfives the requested user"""
     highfives = [
