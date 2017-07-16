@@ -14,7 +14,7 @@ unsupported_msg = "This feature is not supported in the libre.fm API"
 
 table = Table(
     "librefm",
-    database.metadata,
+    botvars.metadata,
     Column('nick', String(25)),
     Column('acc', String(25)),
     PrimaryKeyConstraint('nick')
