@@ -400,7 +400,8 @@ def chicken(text, action):
     if not is_valid(user):
         return "I can't give chicken to that user."
 
-    generator = textgen.TextGenerator(chicken_data["templates"], chicken_data["parts"], variables={"user": user})
+    generator = textgen.TextGenerator(chicken_data["templates"], chicken_data["parts"], 
+                                      variables={"user": user})
 
     # act out the message
     action(generator.generate_string())
@@ -414,7 +415,8 @@ def nugget(text, action):
     if not is_valid(user):
         return "I can't give nuggets to that user."
 
-    generator = textgen.TextGenerator(nugget_data["templates"], nugget_data["parts"], variables={"user": user})
+    generator = textgen.TextGenerator(nugget_data["templates"], nugget_data["parts"], 
+                                      variables={"user": user})
 
     # act out the message
     action(generator.generate_string())
@@ -428,7 +430,8 @@ def pie(text, action):
     if not is_valid(user):
         return "I can't give pie to that user."
 
-    generator = textgen.TextGenerator(pie_data["templates"], pie_data["parts"], variables={"user": user})
+    generator = textgen.TextGenerator(pie_data["templates"], pie_data["parts"], 
+                                      variables={"user": user})
 
     # act out the message
     action(generator.generate_string())
@@ -442,7 +445,8 @@ def icecream(text, action):
     if not is_valid(user):
         return "I can't give icecream to that user."
 
-    generator = textgen.TextGenerator(icecream_data["templates"], icecream_data["parts"], variables={"user": user})
+    generator = textgen.TextGenerator(icecream_data["templates"], icecream_data["parts"], 
+                                      variables={"user": user})
 
     # act out the message
     action(generator.generate_string())
@@ -456,7 +460,8 @@ def brekkie(text, action):
     if not is_valid(user):
         return "I can't give brekkie to that user."
 
-    generator = textgen.TextGenerator(brekkie_data["templates"], brekkie_data["parts"], variables={"user": user})
+    generator = textgen.TextGenerator(brekkie_data["templates"], brekkie_data["parts"], 
+                                      variables={"user": user})
 
     # act out the message
     action(generator.generate_string())
@@ -470,7 +475,8 @@ def doobie(text, action):
     if not is_valid(user):
         return "I can't pass the doobie to that user."
 
-    generator = textgen.TextGenerator(doobie_data["templates"], doobie_data["parts"], variables={"user": user})
+    generator = textgen.TextGenerator(doobie_data["templates"], doobie_data["parts"], 
+                                      variables={"user": user})
 
     # act out the message
     action(generator.generate_string())
@@ -484,7 +490,8 @@ def chocolate(text, action):
     if not is_valid(user):
         return "I can't give chocolate to that user."
 
-    generator = textgen.TextGenerator(chocolate_data["templates"], chocolate_data["parts"], variables={"user": user})
+    generator = textgen.TextGenerator(chocolate_data["templates"], chocolate_data["parts"], 
+                                      variables={"user": user})
     # act out the message
     action(generator.generate_string())
 
@@ -497,7 +504,8 @@ def pasta(text, action):
     if not is_valid(user):
         return "I can't give pasta to that user."
 
-    generator = textgen.TextGenerator(pasta_data["templates"], pasta_data["parts"], variables={"user": user})
+    generator = textgen.TextGenerator(pasta_data["templates"], pasta_data["parts"], 
+                                      variables={"user": user})
 
     # act out the message
     action(generator.generate_string())
@@ -511,7 +519,8 @@ def cereal(text, action):
     if not is_valid(user):
         return "I can't give cereal to that user."
 
-    generator = textgen.TextGenerator(cereal_data["templates"], cereal_data["parts"], variables={"user": user})
+    generator = textgen.TextGenerator(cereal_data["templates"], cereal_data["parts"], 
+                                      variables={"user": user})
 
     # act out the message
     action(generator.generate_string())
@@ -539,7 +548,8 @@ def steak(text, action):
     if not is_valid(user):
         return "I can't treat that user to a nice steak dinner."
 
-    generator = textgen.TextGenerator(steak_data["templates"], steak_data["parts"], variables={"user": user})
+    generator = textgen.TextGenerator(steak_data["templates"], steak_data["parts"], 
+                                      variables={"user": user})
 
     # act out the message
     action(generator.generate_string())
@@ -553,7 +563,8 @@ def milkshake(text, action):
     if not is_valid(user):
         return "I can't treat that user to a milkshake."
 
-    generator = textgen.TextGenerator(milkshake_data["templates"], milkshake_data["parts"], variables={"user": user})
+    generator = textgen.TextGenerator(milkshake_data["templates"], milkshake_data["parts"], 
+                                      variables={"user": user})
 
     # act out the message
     action(generator.generate_string())
@@ -567,7 +578,8 @@ def kebab(text, action):
     if not is_valid(user):
         return "I can't treat that user to a delicious kebab."
 
-    generator = textgen.TextGenerator(kebab_data["templates"], kebab_data["parts"], variables={"user": user})
+    generator = textgen.TextGenerator(kebab_data["templates"], kebab_data["parts"], 
+                                      variables={"user": user})
 
     # act out the message
     action(generator.generate_string())
