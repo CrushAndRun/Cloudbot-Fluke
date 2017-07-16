@@ -348,7 +348,7 @@ def pizza(text, action):
     # act out the message
     action(generator.generate_string())
 
-    @asyncio.coroutine
+@asyncio.coroutine
 @hook.command
 def scone(text, action):
     """<user> - give scone to <user>"""
