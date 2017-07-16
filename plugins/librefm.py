@@ -324,4 +324,4 @@ def topartists(text, nick, db, bot, notice, period):
         artist_name = data["topartists"]["artist"][r]["name"]
         play_count = data["topartists"]["artist"][r]["playcount"]
         out = out + "{} [{:,}] ".format(artist_name, int(play_count))
-return out
+    return out
