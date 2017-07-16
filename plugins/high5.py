@@ -25,4 +25,4 @@ def highfive(nick, text):
         "offers a fist and {nick} pounds it"
 
     ]
-return nick + " " + choice(highfives).format(nick=text)
+    return nick + " " + choice(highfives).format(nick=text)
