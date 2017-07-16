@@ -5,7 +5,7 @@ import requests
 from sqlalchemy import Table, Column, PrimaryKeyConstraint, String
 
 from cloudbot import hook
-from cloudbot.util import timeformat, web, database
+from cloudbot.util import timeformat, web, botvars
 
 api_url = "https://libre.fm/2.0/?format=json"
 
@@ -14,7 +14,7 @@ unsupported_msg = "This feature is not supported in the libre.fm API"
 
 table = Table(
     "librefm",
-    database.metadata,
+    botvars.metadata,
     Column('nick', String(25)),
     Column('acc', String(25)),
     PrimaryKeyConstraint('nick')
