@@ -360,7 +360,7 @@ def scone(text, action):
     generator = textgen.TextGenerator(scone_data["templates"], scone_data["parts"],
                                       variables={"user": user})
     # act out the message
-action(generator.generate_string())
+    action(generator.generate_string())
 
 @asyncio.coroutine
 @hook.command
@@ -374,7 +374,7 @@ def cheese(text, action):
     generator = textgen.TextGenerator(cheese_data["templates"], cheese_data["parts"],
                                       variables={"user": user})
     # act out the message
-action(generator.generate_string())
+    action(generator.generate_string())
 
 @asyncio.coroutine
 @hook.command
@@ -389,7 +389,7 @@ def pancake(text, action):
                                       variables={"user": user})
 
     # act out the message
-action(generator.generate_string())
+    action(generator.generate_string())
 
 @asyncio.coroutine
 @hook.command
@@ -417,7 +417,7 @@ def nugget(text, action):
     generator = textgen.TextGenerator(nugget_data["templates"], nugget_data["parts"], variables={"user": user})
 
     # act out the message
-action(generator.generate_string())
+    action(generator.generate_string())
 
 @asyncio.coroutine
 @hook.command
@@ -473,7 +473,7 @@ def doobie(text, action):
     generator = textgen.TextGenerator(doobie_data["templates"], doobie_data["parts"], variables={"user": user})
 
     # act out the message
-action(generator.generate_string())
+    action(generator.generate_string())
 
 @asyncio.coroutine
 @hook.command("chocolate")
@@ -486,7 +486,7 @@ def chocolate(text, action):
 
     generator = textgen.TextGenerator(chocolate_data["templates"], chocolate_data["parts"], variables={"user": user})
     # act out the message
-action(generator.generate_string())
+    action(generator.generate_string())
 
 @asyncio.coroutine
 @hook.command
@@ -570,4 +570,4 @@ def kebab(text, action):
     generator = textgen.TextGenerator(kebab_data["templates"], kebab_data["parts"], variables={"user": user})
 
     # act out the message
-action(generator.generate_string())
+    action(generator.generate_string())
