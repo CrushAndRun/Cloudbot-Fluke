@@ -16,4 +16,4 @@ def RUADICK(text, message):
     if dickstrip == 'None':
         message('I can\'t find that user')
     else:
-message('{} {}'.format(dickstrip, dickstatus.url))
+        message('{} {}'.format(dickstrip, dickstatus.url))
