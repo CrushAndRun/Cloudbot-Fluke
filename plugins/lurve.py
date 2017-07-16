@@ -30,4 +30,4 @@ def lurve(text, nick, message):
 	out = out.replace("{N}", nick)
 	out = out.replace("{T}", target)
 
-message(out)
+    message(out)
