@@ -45,4 +45,4 @@ def bdsm(text, action):
     """Just a little bit of kinky fun."""
     user = text.strip()
     generator = textgen.TextGenerator(bdsm_data["templates"], bdsm_data["parts"], variables={"user": user})
-action(generator.generate_string())
+    action(generator.generate_string())

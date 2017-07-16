@@ -147,4 +147,4 @@ def get_weather(text):
     tfw = ("The Fucking Weather for " "({0})".format(return_val["location"])) + ("{0}{1}?! {2}".format(return_val["current"]["temperature"],
                                     DEGREE_SYMBOL,
                                     return_val["current"]["weather"][0])) + " " + (return_val["current"]["remark"])
-return tfw
+    return tfw

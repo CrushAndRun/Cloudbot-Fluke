@@ -26,4 +26,4 @@ def lmddgtfy(text):
 
     link = "https://lmddgtfy.net/?q={}".format(requests.utils.quote(text))
 
-return web.try_shorten(link)
+    return web.try_shorten(link)
