@@ -31,4 +31,4 @@ def giphy(text, chan):
         out = "{} content rating: \x02{}\x02. (Powered by GIPHY)".format(gif['embed_url'], gif['rating'].upper())
     else:
         out = "{} - (Powered by GIPHY)".format(gif['embed_url'])
-return out
+    return out
