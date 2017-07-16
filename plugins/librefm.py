@@ -5,7 +5,7 @@ import requests
 from sqlalchemy import Table, Column, PrimaryKeyConstraint, String
 
 from cloudbot import hook
-from cloudbot.util import timeformat, web, database
+from cloudbot.util import timeformat, web, botvars
 
 api_url = "https://libre.fm/2.0/?format=json"
 
