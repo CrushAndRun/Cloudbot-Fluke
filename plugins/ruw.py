@@ -7,5 +7,5 @@ headers = {'Referer': 'http://randomusefulwebsites.com'}
 
 @hook.command('randomusefulsite', 'ruw', 'randomsite')
 def randomusefulwebsite():
-        response = requests.head(url, headers=headers, allow_redirects=True)
+    response = requests.head(url, headers=headers, allow_redirects=True)
     return response.url
