@@ -42,7 +42,7 @@ def get_account(nick):
     return last_account
 
 
-@hook.command("librefm", "librelast", "librenp", autohelp=False)
+@hook.command("librefm", "librelast", "pn", "librenp", autohelp=False)
 def librefm(text, nick, db, bot, notice):
     """[user] [dontsave] - displays the now playing (or last played) track of libre.fm user [user]"""
 
