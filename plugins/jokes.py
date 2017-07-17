@@ -32,6 +32,9 @@ def load_jokes(bot):
     
     with codecs.open(os.path.join(bot.data_dir, "book_puns.txt"), encoding="utf-8") as f:
         book_puns = [line.strip() for line in f.readlines() if not line.startswith("//")]
+        
+    with codecs.open(os.path.join(bot.data_dir, "lawyerjoke.txt"), encoding="utf-8") as f:
+        lawyerjoke = [line.strip() for line in f.readlines() if not line.startswith("//")]       
 
 @hook.command()
 def yomomma(text, message, conn):
@@ -102,3 +105,9 @@ def triforce(message):
     bottom = ["\u25b2\u00a0\u25b2", "\u25b2 \u25b2", "\u25b2\u25b2"]
     message(random.choice(top))
     message(random.choice(bottom))
+    
+@hook.command(autohelp=False)
+def lawyerjoke(message, conn):
+    """returns a lawyer joke, so lawyers know how much we hate them"""
+    message(random.choice(lawyerjoke))
+    
