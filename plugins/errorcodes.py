@@ -1,4 +1,5 @@
 from cloudbot import hook
+import textwrap
 
 ecodelist = {
           "1xx": "Informational responses. An informational response indicates that the request was received and understood. It is issued on a provisional basis while request processing continues. It alerts the client to wait for a final response. The message consists only of the status line and optional header fields, and is terminated by an empty line. As the HTTP/1.0 standard did not define any 1xx status codes"
@@ -141,31 +142,33 @@ def ecode(text, nick, chan, conn):
                         reply = ecodelistreply
                 # Category doesn't exist:
                 if reply == ecodelistreply:
-                        reply = [reply[i:i+n] for i in range(0, len(reply), n)]
+                        reply = textwrap.wrap(reply, n, break_long_words=False)
                         for i in reply:
                             conn.cmd("PRIVMSG " + nick + " :"+i)
                 # Category exists:
                 else:
                         # Target nick exists:
                         if targetnick !=None:
-                                reply = [reply[i:i+n] for i in range(0, len(reply), n)]
+                                reply = targetnick+": "+reply
+                                reply = textwrap.wrap(reply, n, break_long_words=False)
                                 for i in reply:
-                                    conn.cmd("PRIVMSG " + chan + " :"+targetnick+": "+i)
+                                    conn.cmd("PRIVMSG " + chan + " :"+i)
                         else:
                             targetnick = nick
-                            reply = [reply[i:i+n] for i in range(0, len(reply), n)]
+                            reply = targetnick+": "+reply
+                            reply = textwrap.wrap(reply, n, break_long_words=False)
                             for i in reply:
-                                conn.cmd("PRIVMSG " + chan + " :"+targetnick+": "+i)
+                                conn.cmd("PRIVMSG " + chan + " :"+i)
         # No category name, return list of categories.
         else:
             reply = ecodelistreply
-            reply = [reply[i:i+n] for i in range(0, len(reply), n)]
+            reply = textwrap.wrap(reply, n, break_long_words=False)
             for i in reply:
                 conn.cmd("PRIVMSG " + nick + " :"+i)
 
 @hook.command
 def ecodes(conn, nick):
         reply = ecodelistreply
-        reply = [reply[i:i+n] for i in range(0, len(reply), n)]
+        reply = textwrap.wrap(reply, n, break_long_words=False)
         for i in reply:
             conn.cmd("PRIVMSG " + nick + " :"+i)
