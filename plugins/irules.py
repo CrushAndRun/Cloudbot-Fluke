@@ -50,10 +50,7 @@ iruleslist = {
           "47": "The pool is always closed due to AIDS (and stingrays, which also have AIDS).",
           "48": "A cat is fine too.",
           "49": "One cat leads to another.",
-          "50": "Another cat leads to Zippo Cat."
-}
-
-iruleslist = { 
+          "50": "Another cat leads to Zippo Cat.",
           "51": "No matter what it is, it is somebody's fetish. No exceptions.",
           "52": "It is delicious cake. You must eat it.",
           "53": "It is delicious trap. You must hit it.",
@@ -110,7 +107,7 @@ iruleslist = {
 }
 # Generate the irules list reply.
 # Beginning phrase.
-iruleslistreply = "List of errors are: "
+iruleslistreply = "List of rules are: "
 # Make the list of entries.
 irulesactuallist = list(iruleslist.keys())
 # Alphabetize it.
