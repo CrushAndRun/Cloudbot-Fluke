@@ -59,12 +59,8 @@ ecodelist = {
           "428": "Precondition Required (RFC 6585). The origin server requires the request to be conditional. Intended to prevent 'the ''lost update'' problem, where a client GETs a resource's state, modifies it, and PUTs it back to the server, when meanwhile a third party has modified the state on the server, leading to a conflict'.",
           "429": "Too Many Requests (RFC 6585). The user has sent too many requests in a given amount of time. Intended for use with rate-limiting schemes.",
           "431": "Request Header Fields Too Large (RFC 6585). The server is unwilling to process the request because either an individual header field, or all the header fields collectively, are too large.",
-          "451": "Unavailable For Legal Reasons (RFC 7725). A server operator has received a legal demand to deny access to a resource or to a set of resources that includes the requested resource. The code 451 was chosen as a reference to the novel Fahrenheit 451."
-}
-
-ecodelist = {
-	      "5xx": "Server error. The server failed to fulfill an apparently valid request. Response status codes beginning with the digit '5' indicate cases in which the server is aware that it has encountered an error or is otherwise incapable of performing the request. Except when responding to a HEAD request"
-                 "the server should include an entity containing an explanation of the error situation, and indicate whether it is a temporary or permanent condition. Likewise, user agents should display any included entity to the user. These response codes are applicable to any request method.",
+          "451": "Unavailable For Legal Reasons (RFC 7725). A server operator has received a legal demand to deny access to a resource or to a set of resources that includes the requested resource. The code 451 was chosen as a reference to the novel Fahrenheit 451.",
+	      "5xx": "Server error. The server failed to fulfill an apparently valid request. Response status codes beginning with the digit '5' indicate cases in which the server is aware that it has encountered an error or is otherwise incapable of performing the request. Except when responding to a HEAD request the server should include an entity containing an explanation of the error situation, and indicate whether it is a temporary or permanent condition. Likewise, user agents should display any included entity to the user. These response codes are applicable to any request method.",
 	      "500": "Internal Server Error. A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.",
           "501": "Not Implemented. The server either does not recognize the request method, or it lacks the ability to fulfill the request. Usually this implies future availability (e.g., a new feature of a web-service API).",
           "502": "Bad Gateway. The server was acting as a gateway or proxy and received an invalid response from the upstream server.",
@@ -103,6 +99,10 @@ ecodelist = {
           "527": "Railgun Error. Error 527 indicates that the requests timeout or failed after the WAN connection has been established. Cloudflare's reverse proxy service expands the 5xx series of errors space to signal issues with the origin server.",
           "ec-link": "https://pastebin.com/kCLTJtyS List of site error codes."
 }
+
+# Number of chars to split by
+n = 250
+
 # Generate the error code list reply.
 # Beginning phrase.
 ecodelistreply = "List of site error codes are: "
@@ -141,18 +141,31 @@ def ecode(text, nick, chan, conn):
                         reply = ecodelistreply
                 # Category doesn't exist:
                 if reply == ecodelistreply:
-                        conn.cmd("PRIVMSG " + nick + " :"+ecodelistreply)
+                        reply = [reply[i:i+n] for i in range(0, len(reply), n)]
+                        for i in reply:
+                            conn.cmd("PRIVMSG " + nick + " :"+i)
                 # Category exists:
                 else:
                         # Target nick exists:
                         if targetnick !=None:
-                                conn.cmd("PRIVMSG " + chan + " :"+targetnick+": "+reply)
+                                reply = [reply[i:i+n] for i in range(0, len(reply), n)]
+                                for i in reply:
+                                    conn.cmd("PRIVMSG " + chan + " :"+targetnick+": "+i)
                         else:
-                                return reply
+                            targetnick = nick
+                            reply = [reply[i:i+n] for i in range(0, len(reply), n)]
+                            for i in reply:
+                                conn.cmd("PRIVMSG " + chan + " :"+targetnick+": "+i)
         # No category name, return list of categories.
         else:
-                conn.cmd("PRIVMSG " + nick + " :"+ecodelistreply)
+            reply = ecodelistreply
+            reply = [reply[i:i+n] for i in range(0, len(reply), n)]
+            for i in reply:
+                conn.cmd("PRIVMSG " + nick + " :"+i)
 
 @hook.command
 def ecodes(conn, nick):
-        conn.cmd("PRIVMSG " + nick + " :"+ecodelistreply)
+        reply = ecodelistreply
+        reply = [reply[i:i+n] for i in range(0, len(reply), n)]
+        for i in reply:
+            conn.cmd("PRIVMSG " + nick + " :"+i)
