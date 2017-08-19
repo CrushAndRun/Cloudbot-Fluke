@@ -158,3 +158,7 @@ def irule(text, nick, chan, conn):
 @hook.command
 def irules(conn, nick):
         conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
+
+@hook.command
+def irlink(conn, nick, chan):
+        conn.cmd("PRIVMSG " + chan + " :"+nick+": https://pastebin.com/jYG2UG5D List of internet rules.")
