@@ -53,8 +53,8 @@ replacements = {
 # append an inverted form of replacements to itself, so flipping works both ways
 replacements.update(dict((v, k) for k, v in replacements.items()))
 
-flippers = ["( ﾉ⊙︵⊙）ﾉ", "(╯°□°）╯", "( ﾉ♉︵♉ ）ﾉ"]
-table_flipper = "┻━┻ ︵ヽ(`Д´)ﾉ︵ ┻━┻"
+flippers = ["( ﾉ⊙︵⊙）ﾉ", "(╯°□°）╯", "( ﾉ♉︵♉ ）ﾉ", "(˚Õ˚)ر", "(`Д´)ﾉ"]
+table_flipper = ["┻━┻ ︵ヽ(`Д´)ﾉ︵ ┻━┻", "╚╩╩╝~~~~ヽ(˚Õ˚)ﾉ~~~~╚╩╩╝"]
 
 @hook.command
 def flip(text, reply, message, chan):
@@ -63,7 +63,7 @@ def flip(text, reply, message, chan):
     #table_status = defaultdict(False)
     if USE_FLIPPERS:
         if text in ['table','tables']:
-             message(random.choice([random.choice(flippers) + " ︵ " + "\u253B\u2501\u253B", table_flipper]))
+             message(random.choice([random.choice(flippers) + " ︵ " + "\u253B\u2501\u253B", random.choice(table_flipper)]))
              table_status[chan] = True
         elif text == "5318008":
              out = "BOOBIES"
