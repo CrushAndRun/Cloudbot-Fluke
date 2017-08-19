@@ -17,6 +17,6 @@ def rlmradio(text):
     htmlout = html[28:-14]
     pw_bytes = htmlout.decode("utf-8")
     filtered = pw_bytes.replace("&apos;", "'")
-    filtered = "Now on the RLM Radio Stream: " + filtered
+    filtered = "Now on the RLM Radio Stream http://rlmradio.xyz : " + filtered
     out = filtered
     return out
