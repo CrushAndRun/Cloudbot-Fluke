@@ -126,3 +126,11 @@ warnings = [
 @hook.command
 def warning(conn, nick):
     return random.choice(warnings)
+
+@hook.command
+def warn(text, conn, nick, chan):
+    if text:
+        targetnick = text.partition(' ')[0]
+        conn.cmd("PRIVMSG " + chan + " :"+targetnick+": "+random.choice(warnings))
+    else:
+        return random.choice(warnings)
