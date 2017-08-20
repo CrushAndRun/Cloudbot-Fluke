@@ -18,6 +18,6 @@ def bellyup4blues(text):
     req = urllib.request.Request(url, data=None, headers=headers)
     html = urllib.request.urlopen(req).read()
     song = str(html).split("<body>")[1].split("</body>")[0].split(",")[6]
-    filtered = "Now Playing at http://bellyup4blues.com/: " + song + "Add http://72.13.82.82:5100/listen.pls to your media player."
+    filtered = "Now Playing at http://bellyup4blues.com/: " + song + " -!- Add http://72.13.82.82:5100/listen.pls to your media player."
     out = filtered
     return out
