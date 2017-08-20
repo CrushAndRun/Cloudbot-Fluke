@@ -1,4 +1,5 @@
 from cloudbot import hook
+import random
 
 iruleslist = { 
           "1": "Do not talk about /b/.",
@@ -102,8 +103,7 @@ iruleslist = {
           "98": "Only Zippocat is truth.",
           "99": "All numbers are at least 100 but always OVER NINE THOUSAAAAAND.",
           "100": "Faggotry will not be tolerated.",
-          "899": "No one intentionally sees their first dickgirl. No exceptions.",
-          "irlink": "https://pastebin.com/jYG2UG5D List of internet rules."
+          "899": "No one intentionally sees their first dickgirl. No exceptions."
 }
 # Generate the irules list reply.
 # Beginning phrase.
@@ -138,6 +138,10 @@ def irule(text, nick, chan, conn):
                         targetnick = None
                 # Check to see if category exists.
                 try:
+                    if command.lower() == "random":
+                        randkey = random.choice(irulesactuallist)
+                        reply = randkey+": "+iruleslist[randkey]
+                    else:
                         reply = iruleslist[command]
                 except KeyError:
                         reply = iruleslistreply
