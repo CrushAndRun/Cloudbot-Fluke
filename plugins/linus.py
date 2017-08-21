@@ -1,5 +1,6 @@
 from cloudbot import hook
 import random
+import textwrap
 
 linusquotes = [
 "I'm doing a (free) operating system (just a hobby, won't be big and professional like gnu) for 386(486) AT clones.",
@@ -138,6 +139,14 @@ linusquotes = [
 "I was 21 at the time, so I was young, but I had already programmed for half my life, basically. And every project before that had been completely personal and it was a revelation when people just started commenting, started giving feedback on your code. And even before they started giving code back, that was, I think, one of the big moments where I said, \"I love other people!\" Don't get me wrong -- I'm actually not a people person."
 ]
 
+# Number of chars to split by
+n = 300
+
 @hook.command
-def linus(conn, nick):
-    return random.choice(linusquotes)
+def linus(conn, nick, chan):
+    # Pick random quote.
+    reply = random.choice(linusquotes)
+    # Insert nick here so we don't get highlighted more than once. Also splits per n chars.
+    reply = textwrap.wrap("("+nick+") "+reply, n, break_long_words=False)
+    for i in reply:
+        conn.cmd("PRIVMSG " + chan + " :" + i)
