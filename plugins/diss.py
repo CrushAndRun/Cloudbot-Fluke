@@ -870,9 +870,9 @@ gamer = [
     u'You\'re so bad at Warcraft, you thought the level cap was a wearable item.'
 ]
 
-# shakesphere
+# shakespeare
 
-shakesphere = ["Thou droning, doghearted dewberry!",
+shakespeare = ["Thou droning, doghearted dewberry!",
 "Thou impertinent, muddy-mettled scut!",
 "Thou fishified, fool-born knave!",
 "Thou venomed, lily flap-dragon!",
@@ -2963,7 +2963,7 @@ def diss(conn, nick, chan, text):
                 insult_type = 1
             elif option == "--gamer":
                 insult_type = 2
-            elif option == "--shakesphere":
+            elif option == "--shakespeare":
                 insult_type = 3
             elif option == "--nerd":
                 insult_type = 4
@@ -2990,7 +2990,7 @@ def diss(conn, nick, chan, text):
     elif insult_type == 2:
         insult_list = gamer
     elif insult_type == 3:
-        insult_list = shakesphere
+        insult_list = shakespeare
     elif insult_type == 4:
         insult_list = nerd
     elif insult_type == 5:
