@@ -2952,7 +2952,7 @@ generated = [
 # Number of chars to split by
 n = 300
 
-@hook.command
+@hook.command("diss", autohelp=False)
 def diss(conn, nick, chan, text):
     """[--yomomma] [--gamer] [--shakespeare] [--nerd] [--celebrity] [--movie] [--generated] <target> -- Insult command. Named diss for lack of a better name. If no option is specified, a random one is selected."""
     if text:
