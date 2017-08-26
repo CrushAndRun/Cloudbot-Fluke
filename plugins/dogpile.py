@@ -27,7 +27,7 @@ def dogpileimage(text, chan):
     image = parse.unquote(parse.unquote(random.choice(linklist)).split('ru=')[1].split('&')[0])
     return image
 
-@hook.command("dp", "g", "dogpile")
+@hook.command("dp", "dogpile")
 def dogpile(text, chan):
     """Uses the dogpile search engine to find shit on the web."""
     if chan in opt_out:
