@@ -123,12 +123,14 @@ warnings = [
 "Optional modem required."
 ]
 
-@hook.command
+@hook.command("warning", autohelp=False)
 def warning(conn, nick):
+    """Give a warning to yourself."""
     return random.choice(warnings)
 
-@hook.command
+@hook.command("warn")
 def warn(text, conn, nick, chan):
+    """<user> -- Warns a user."""
     if text:
         targetnick = text.partition(' ')[0]
         conn.cmd("PRIVMSG " + chan + " :"+targetnick+": "+random.choice(warnings))
