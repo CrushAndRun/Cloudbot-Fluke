@@ -123,8 +123,9 @@ for i in irulesactuallist:
 # Finish phrase.
 iruleslistreply = iruleslistreply+"."
 
-@hook.command
+@hook.command("irule", autohelp=False)
 def irule(text, nick, chan, conn):
+    """<number> -- Looks up internet rule based on number provided. For a list of rules, see "irules" and for a link, use "irlink""""
         # Check for a category name.
         if text:
                 # Split by spaces if they exist.
@@ -159,10 +160,12 @@ def irule(text, nick, chan, conn):
         else:
                 conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
 
-@hook.command
+@hook.command("irules", autohelp=False)
 def irules(conn, nick):
+    """Provides list of internet rules in numbers."""
         conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
 
-@hook.command
+@hook.command("irlink", autohelp=False)
 def irlink(conn, nick, chan):
+    """Provides a link to the pastebin of rules."""
         conn.cmd("PRIVMSG " + chan + " :"+nick+": https://pastebin.com/jYG2UG5D List of internet rules.")
