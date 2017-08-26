@@ -122,8 +122,9 @@ for i in ecodeactuallist:
 # Finish phrase.
 ecodelistreply = ecodelistreply+"."
 
-@hook.command
+@hook.command("ecode", autohelp=False)
 def ecode(text, nick, chan, conn):
+    """<code> Looks up internet error codes. For a list of codes, see 'ecodes'"""
         # Check for a category name.
         if text:
                 # Split by spaces if they exist.
@@ -166,8 +167,9 @@ def ecode(text, nick, chan, conn):
             for i in reply:
                 conn.cmd("PRIVMSG " + nick + " :"+i)
 
-@hook.command
+@hook.command("ecodes", autohelp=False)
 def ecodes(conn, nick):
+    """Provide a list of internet error codes."""
         reply = ecodelistreply
         reply = textwrap.wrap(reply, n, break_long_words=False)
         for i in reply:
