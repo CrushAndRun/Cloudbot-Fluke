@@ -75,8 +75,9 @@ Man with no legs bums around."""
 # Number of chars to split by
 n = 300
 
-@hook.command
+@hook.command("insight", autohelp=False)
 def insight(conn, nick, chan):
+    """Provides insight to daily life."""
     # split lines
     splitquotes = quotes.split("\n")
     # Pick random quote.
