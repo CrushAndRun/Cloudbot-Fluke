@@ -159,7 +159,7 @@ def antonym(text):
 
 
 # word of the day
-@hook.command("word", "wordoftheday", autohelp=False)
+@hook.command("wotd", "wordoftheday", autohelp=False)
 def wordoftheday(text, conn):
     """returns the word of the day. To see past word of the day enter use the format yyyy-MM-dd. The specified date must be after 2009-08-10."""
     if not api_key:
