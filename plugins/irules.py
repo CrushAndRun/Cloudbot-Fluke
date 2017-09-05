@@ -114,58 +114,58 @@ irulesactuallist = list(iruleslist.keys())
 irulesactuallist.sort()
 # Generate the reply.
 for i in irulesactuallist:
-        # Probably a better way of handling this... Don't need a comma at the start.
-        if iruleslistreply.endswith(": ") == True:
-            iruleslistreply = iruleslistreply+i
-        # The rest of the list.
-        else:
-                iruleslistreply = iruleslistreply+", "+i
+    # Probably a better way of handling this... Don't need a comma at the start.
+    if iruleslistreply.endswith(": ") == True:
+        iruleslistreply = iruleslistreply+i
+    # The rest of the list.
+    else:
+        iruleslistreply = iruleslistreply+", "+i
 # Finish phrase.
 iruleslistreply = iruleslistreply+"."
 
 @hook.command("irule", autohelp=False)
 def irule(text, nick, chan, conn):
-    """<number> -- Looks up internet rule based on number provided. For a list of rules, see "irules" and for a link, use "irlink""""
-        # Check for a category name.
-        if text:
-                # Split by spaces if they exist.
-                text = text.split(" ")
-                # Make category name lowercase.
-                command = text[0].lower().strip()
-                # Check if there's a target nick.
-                try:
-                        targetnick = text[1]
-                except IndexError:
-                        targetnick = None
-                # Check to see if category exists.
-                try:
-                    if command.lower() == "random":
-                        randkey = random.choice(irulesactuallist)
-                        reply = randkey+": "+iruleslist[randkey]
-                    else:
-                        reply = iruleslist[command]
-                except KeyError:
-                        reply = iruleslistreply
-                # Category doesn't exist:
-                if reply == iruleslistreply:
-                        conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
-                # Category exists:
-                else:
-                        # Target nick exists:
-                        if targetnick !=None:
-                                conn.cmd("PRIVMSG " + chan + " :"+targetnick+": "+reply)
-                        else:
-                                return reply
-        # No category name, return list of categories.
+    """<number> -- Looks up internet rule based on number provided. For a list of rules, see 'irules' and for a link, use 'irlink'"""
+    # Check for a category name.
+    if text:
+        # Split by spaces if they exist.
+        text = text.split(" ")
+        # Make category name lowercase.
+        command = text[0].lower().strip()
+        # Check if there's a target nick.
+        try:
+            targetnick = text[1]
+        except IndexError:
+            targetnick = None
+        # Check to see if category exists.
+        try:
+            if command.lower() == "random":
+                randkey = random.choice(irulesactuallist)
+                reply = randkey+": "+iruleslist[randkey]
+            else:
+                reply = iruleslist[command]
+        except KeyError:
+            reply = iruleslistreply
+        # Category doesn't exist:
+        if reply == iruleslistreply:
+            conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
+        # Category exists:
         else:
-                conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
+            # Target nick exists:
+            if targetnick !=None:
+                conn.cmd("PRIVMSG " + chan + " :"+targetnick+": "+reply)
+            else:
+                return reply
+    # No category name, return list of categories.
+    else:
+        conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
 
 @hook.command("irules", autohelp=False)
 def irules(conn, nick):
     """Provides list of internet rules in numbers."""
-        conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
+    conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
 
 @hook.command("irlink", autohelp=False)
 def irlink(conn, nick, chan):
     """Provides a link to the pastebin of rules."""
-        conn.cmd("PRIVMSG " + chan + " :"+nick+": https://pastebin.com/jYG2UG5D List of internet rules.")
+    conn.cmd("PRIVMSG " + chan + " :"+nick+": https://pastebin.com/jYG2UG5D List of internet rules.")
