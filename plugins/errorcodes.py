@@ -113,64 +113,64 @@ ecodeactuallist = list(ecodelist.keys())
 ecodeactuallist.sort()
 # Generate the reply.
 for i in ecodeactuallist:
-        # Probably a better way of handling this... Don't need a comma at the start.
-        if ecodelistreply.endswith(": ") == True:
-            ecodelistreply = ecodelistreply+i
-        # The rest of the list.
-        else:
-                ecodelistreply = ecodelistreply+", "+i
+    # Probably a better way of handling this... Don't need a comma at the start.
+    if ecodelistreply.endswith(": ") == True:
+        ecodelistreply = ecodelistreply+i
+    # The rest of the list.
+    else:
+        ecodelistreply = ecodelistreply+", "+i
 # Finish phrase.
 ecodelistreply = ecodelistreply+"."
 
 @hook.command("ecode", autohelp=False)
 def ecode(text, nick, chan, conn):
     """<code> Looks up internet error codes. For a list of codes, see 'ecodes'"""
-        # Check for a category name.
-        if text:
-                # Split by spaces if they exist.
-                text = text.split(" ")
-                # Make category name lowercase.
-                command = text[0].lower().strip()
-                # Check if there's a target nick.
-                try:
-                        targetnick = text[1]
-                except IndexError:
-                        targetnick = None
-                # Check to see if category exists.
-                try:
-                        reply = ecodelist[command]
-                except KeyError:
-                        reply = ecodelistreply
-                # Category doesn't exist:
-                if reply == ecodelistreply:
-                        reply = textwrap.wrap(reply, n, break_long_words=False)
-                        for i in reply:
-                            conn.cmd("PRIVMSG " + nick + " :"+i)
-                # Category exists:
-                else:
-                        # Target nick exists:
-                        if targetnick !=None:
-                                reply = targetnick+": "+reply
-                                reply = textwrap.wrap(reply, n, break_long_words=False)
-                                for i in reply:
-                                    conn.cmd("PRIVMSG " + chan + " :"+i)
-                        else:
-                            targetnick = nick
-                            reply = targetnick+": "+reply
-                            reply = textwrap.wrap(reply, n, break_long_words=False)
-                            for i in reply:
-                                conn.cmd("PRIVMSG " + chan + " :"+i)
-        # No category name, return list of categories.
-        else:
+    # Check for a category name.
+    if text:
+        # Split by spaces if they exist.
+        text = text.split(" ")
+        # Make category name lowercase.
+        command = text[0].lower().strip()
+        # Check if there's a target nick.
+        try:
+            targetnick = text[1]
+        except IndexError:
+            targetnick = None
+        # Check to see if category exists.
+        try:
+            reply = ecodelist[command]
+        except KeyError:
             reply = ecodelistreply
+        # Category doesn't exist:
+        if reply == ecodelistreply:
             reply = textwrap.wrap(reply, n, break_long_words=False)
             for i in reply:
                 conn.cmd("PRIVMSG " + nick + " :"+i)
-
-@hook.command("ecodes", autohelp=False)
-def ecodes(conn, nick):
-    """Provide a list of internet error codes."""
+            # Category exists:
+        else:
+            # Target nick exists:
+            if targetnick !=None:
+                reply = targetnick+": "+reply
+                reply = textwrap.wrap(reply, n, break_long_words=False)
+                for i in reply:
+                    conn.cmd("PRIVMSG " + chan + " :"+i)
+            else:
+                targetnick = nick
+                reply = targetnick+": "+reply
+                reply = textwrap.wrap(reply, n, break_long_words=False)
+                for i in reply:
+                    conn.cmd("PRIVMSG " + chan + " :"+i)
+    # No category name, return list of categories.
+    else:
         reply = ecodelistreply
         reply = textwrap.wrap(reply, n, break_long_words=False)
         for i in reply:
             conn.cmd("PRIVMSG " + nick + " :"+i)
+
+@hook.command("ecodes", autohelp=False)
+def ecodes(conn, nick):
+    """Provide a list of internet error codes."""
+    reply = ecodelistreply
+    reply = textwrap.wrap(reply, n, break_long_words=False)
+    for i in reply:
+        conn.cmd("PRIVMSG " + nick + " :"+i)
