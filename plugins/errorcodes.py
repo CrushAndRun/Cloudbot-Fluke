@@ -98,7 +98,6 @@ ecodelist = {
           "525": "SSL Handshake Failed. Cloudflare could not negotiate a SSL/TLS handshake with the origin server. Cloudflare's reverse proxy service expands the 5xx series of errors space to signal issues with the origin server.",
           "526": "Invalid SSL Certificate. Cloudflare could not validate the SSL/TLS certificate that the origin server presented. Cloudflare's reverse proxy service expands the 5xx series of errors space to signal issues with the origin server.",
           "527": "Railgun Error. Error 527 indicates that the requests timeout or failed after the WAN connection has been established. Cloudflare's reverse proxy service expands the 5xx series of errors space to signal issues with the origin server.",
-          "ec-link": "https://pastebin.com/kCLTJtyS List of site error codes."
 }
 
 # Number of chars to split by
@@ -174,3 +173,8 @@ def ecodes(conn, nick):
     reply = textwrap.wrap(reply, n, break_long_words=False)
     for i in reply:
         conn.cmd("PRIVMSG " + nick + " :"+i)
+
+@hook.command("eclink", autohelp=False)
+def eclink(conn, nick, chan):
+    """Provides a link to the pastebin of error codes."""
+    conn.cmd("PRIVMSG " + chan + " :"+nick+": https://pastebin.com/kCLTJtyS List of site error codes.")
