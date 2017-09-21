@@ -89,7 +89,7 @@ def time_command(text):
 
 @hook.command(autohelp=False)
 def beats(text):
-    """ -- Gets the current time in .beats (Swatch Internet Time). """
+    """ -- Gets the current time in beats (Swatch Internet Time). For more info enter beats wut|guide."""
 
     if text.lower() == "wut":
         return "Instead of hours and minutes, the mean solar day is divided " \
