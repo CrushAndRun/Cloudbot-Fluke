@@ -163,9 +163,9 @@ def weather(text, reply, db, nick, notice):
 
     # Get the more accurate URL if available, if not, get the generic one.
     if "?query=," in response["current_observation"]['ob_url']:
-        weather_data['url'] = response["current_observation"]['forecast_url']
+        weather_data['url'] = response["current_observation"]
     else:
-        weather_data['url'] = response["current_observation"]['ob_url']
+        weather_data['url'] = response["current_observation"]
 
     reply("{place} - \x02Current:\x02 {conditions}, {temp_f}F/{temp_c}C, {humidity}RH, "
           "Wind: {wind_kph}KPH/{wind_mph}MPH {wind_direction}, \x02Today:\x02 {today_conditions}, "
