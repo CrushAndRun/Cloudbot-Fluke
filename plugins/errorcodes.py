@@ -101,7 +101,7 @@ ecodelist = {
 }
 
 # Number of chars to split by
-n = 250
+n = 300
 
 # Generate the error code list reply.
 # Beginning phrase.
@@ -110,6 +110,7 @@ ecodelistreply = "List of site error codes are: "
 ecodeactuallist = list(ecodelist.keys())
 # Alphabetize it.
 ecodeactuallist.sort()
+ecodelink = "https://pastebin.com/kCLTJtyS"
 # Generate the reply.
 for i in ecodeactuallist:
     # Probably a better way of handling this... Don't need a comma at the start.
@@ -119,7 +120,7 @@ for i in ecodeactuallist:
     else:
         ecodelistreply = ecodelistreply+", "+i
 # Finish phrase.
-ecodelistreply = ecodelistreply+"."
+ecodelistreply = ecodelistreply+" - "+ecodelink
 
 @hook.command("ecode", autohelp=False)
 def ecode(text, nick, chan, conn):
@@ -177,4 +178,4 @@ def ecodes(conn, nick):
 @hook.command("eclink", autohelp=False)
 def eclink(conn, nick, chan):
     """Provides a link to the pastebin of error codes."""
-    conn.cmd("PRIVMSG " + chan + " :"+nick+": https://pastebin.com/kCLTJtyS List of site error codes.")
+    conn.cmd("PRIVMSG " + chan + " :"+nick+": "+ecodelink+" List of site error codes.")
