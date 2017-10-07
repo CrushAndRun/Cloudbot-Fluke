@@ -1,5 +1,6 @@
 from cloudbot import hook
 import random
+import textwrap
 
 iruleslist = { 
           "1": "Do not talk about /b/.",
@@ -105,13 +106,16 @@ iruleslist = {
           "100": "Faggotry will not be tolerated.",
           "899": "No one intentionally sees their first dickgirl. No exceptions."
 }
+# Number of chars to split by
+n=300
 # Generate the irules list reply.
 # Beginning phrase.
 iruleslistreply = "List of rules are: "
 # Make the list of entries.
 irulesactuallist = list(iruleslist.keys())
 # Alphabetize it.
-irulesactuallist.sort()
+irulesactuallist.sort(key=float)
+irulelink = "https://pastebin.com/jYG2UG5D"
 # Generate the reply.
 for i in irulesactuallist:
     # Probably a better way of handling this... Don't need a comma at the start.
@@ -121,7 +125,7 @@ for i in irulesactuallist:
     else:
         iruleslistreply = iruleslistreply+", "+i
 # Finish phrase.
-iruleslistreply = iruleslistreply+"."
+iruleslistreply = iruleslistreply+" - "+irulelink
 
 @hook.command("irule", autohelp=False)
 def irule(text, nick, chan, conn):
@@ -148,24 +152,39 @@ def irule(text, nick, chan, conn):
             reply = iruleslistreply
         # Category doesn't exist:
         if reply == iruleslistreply:
-            conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
+            reply = textwrap.wrap(reply, n, break_long_words=False)
+            for i in reply:
+                conn.cmd("PRIVMSG " + nick + " :"+i)
         # Category exists:
         else:
             # Target nick exists:
             if targetnick !=None:
-                conn.cmd("PRIVMSG " + chan + " :"+targetnick+": "+reply)
+                reply = targetnick+": "+reply
+                reply = textwrap.wrap(reply, n, break_long_words=False)
+                for i in reply:
+                    conn.cmd("PRIVMSG " + chan + " :"+i)
             else:
-                return reply
+                targetnick = nick
+                reply = targetnick+": "+reply
+                reply = textwrap.wrap(reply, n, break_long_words=False)
+                for i in reply:
+                    conn.cmd("PRIVMSG " + chan + " :"+i)
     # No category name, return list of categories.
     else:
-        conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
+        reply = iruleslistreply
+        reply = textwrap.wrap(reply, n, break_long_words=False)
+        for i in reply:
+            conn.cmd("PRIVMSG " + nick + " :"+i)
 
 @hook.command("irules", autohelp=False)
 def irules(conn, nick):
     """Provides list of internet rules in numbers."""
-    conn.cmd("PRIVMSG " + nick + " :"+iruleslistreply)
+    reply = iruleslistreply
+    reply = textwrap.wrap(reply, n, break_long_words=False)
+    for i in reply:
+        conn.cmd("PRIVMSG " + nick + " :"+i)
 
 @hook.command("irlink", autohelp=False)
 def irlink(conn, nick, chan):
     """Provides a link to the pastebin of rules."""
-    conn.cmd("PRIVMSG " + chan + " :"+nick+": https://pastebin.com/jYG2UG5D List of internet rules.")
+    conn.cmd("PRIVMSG " + chan + " :"+nick+": "+irulelink+" List of internet rules.")
