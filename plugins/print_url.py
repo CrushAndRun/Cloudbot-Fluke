@@ -13,7 +13,7 @@ url_re = re.compile('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-
 
 
 @hook.regex(url_re)
-def print_url_title(match):
+def print_url_title(message, chan, match):
     # It would be a good idea to also include useragent headers in the request
     r = requests.get(match.group())
     html = BeautifulSoup(r.text)
@@ -22,5 +22,5 @@ def print_url_title(match):
     filtered = re.sub(u'(?imu)^\s*\n', u'', title)
     if 'youtu' not in r.url and 'twitter' not in r.url:  #exclude YouTube URL's
         out = "Title: {}".format(filtered)
-        return out
+        message(out, chan)
     
