@@ -120,6 +120,13 @@ def weather(text, reply, db, nick, notice):
         if not location:
             notice(weather.__doc__)
             return
+    elif text.lower().startswith("-n") == True:
+        try:
+            location = get_location(text.split(" ")[1])
+        except IndexError:
+            return "Please input a nickname."
+        if not location:
+            return "Nickname doesn't have a location set."
     else:
         location = text
     # use find_location to get location data from the user input
@@ -172,5 +179,5 @@ def weather(text, reply, db, nick, notice):
           "High: {today_high_f}F/{today_high_c}C, Low: {today_low_f}F/{today_low_c}C. "
           "\x02Tomorrow:\x02 {tomorrow_conditions}, High: {tomorrow_high_f}F/{tomorrow_high_c}C, "
           "Low: {tomorrow_low_f}F/{tomorrow_low_c}C ".format(**weather_data))
-    if text:
+    if text and text.lower().startswith("-n") != True:
         add_location(nick, location, db)
