@@ -14,7 +14,7 @@ def invite(irc_paramlist, conn):
     :type irc_paramlist: list[str]
     :type conn: cloudbot.client.Client
     """
-    invite_join = conn.config.get('invite_join', True)
+    invite_join = conn.config.get('invite_join', False)
     if invite_join:
         mode = "mode {}".format(irc_paramlist[-1])
         conn.send(mode)
