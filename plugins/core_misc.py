@@ -8,13 +8,13 @@ socket.setdefaulttimeout(10)
 
 # Auto-join on Invite (Configurable, defaults to True)
 @asyncio.coroutine
-@hook.irc_raw('INVITE')
+@hook.irc_raw('INVITE', permissions=["botcontrol"])
 def invite(irc_paramlist, conn):
     """
     :type irc_paramlist: list[str]
     :type conn: cloudbot.client.Client
     """
-    invite_join = conn.config.get('invite_join', False)
+    invite_join = conn.config.get('invite_join', True)
     if invite_join:
         mode = "mode {}".format(irc_paramlist[-1])
         conn.send(mode)
