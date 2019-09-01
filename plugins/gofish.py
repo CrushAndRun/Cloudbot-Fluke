@@ -247,7 +247,7 @@ def catch(nick, chan, message, db, conn, notice):
         message("{} Perfect set, you hooked the fish in {} seconds! You have caught {} {} in {}.".format(nick, timer, score, fish, chan))
         set_fishtime(chan, conn)
 
-@hook.command("feeds", "crackers", autohelp=False)
+@hook.command("crumbs", "crackers", autohelp=False)
 def feeds(nick, chan, message, db, conn, notice):
     """when there are fish swimming about use this command to feed them and make friends."""
     global game_status, scripters
