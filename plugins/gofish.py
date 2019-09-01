@@ -124,9 +124,9 @@ def no_fish_kick(text, chan, conn, notice):
 
 def generate_fish():
     """Try and randomize the fish message so people can't highlight on it/script against it."""
-    fbody = random.choice(fish)
     ftail = random.choice(fish_tail)
-    return (fbody, ftail)
+    fbody = random.choice(fish)   
+    return (ftail, fbody)
 
 
 @hook.periodic(11, initial_interval=11)
