@@ -2,16 +2,16 @@ from cloudbot import hook
 import random
 
 limericks = ['There once was a woman named Jill who swallowed an exploding pill.. They found her vagina in North Carolina and her tits in a tree in Brazil.', 
-         'There was a man from Madrass whose balls were made out of brass..On a Stormy Weather they Banged together and sparks flew out of his ass.', 
-		     'A worried young fellow McDoole found some red spots on his tool..His doctor a cynic said get out of my clinic and wipe off the lipstick you fool.', 
-		     'There once was a man named Bright who traveled much faster than light..He left one day in a relative way and came back the previous night. ', 
-		     'A young small plane pilot named Sanger got a girl alone in his hangar..When she asked where in Maine he was flying his plane he said he was going to Bangor.', 
-		     'On the chest of a barmaid from Vail was tattooed all the prices of ale..Whilst on her behind for the sake of the blind was precisely the same but in braille.', 
-		     'A limerick of classic proportion should have meter and rhyme and a portion..of humor quite lewd and a frightfully crude impossible sexual contortion.',
+               'There was a man from Madrass whose balls were made out of brass..On a Stormy Weather they Banged together and sparks flew out of his ass.', 
+		       'A worried young fellow McDoole found some red spots on his tool..His doctor a cynic said get out of my clinic and wipe off the lipstick you fool.', 
+		       'There once was a man named Bright who traveled much faster than light..He left one day in a relative way and came back the previous night. ', 
+		       'A young small plane pilot named Sanger got a girl alone in his hangar..When she asked where in Maine he was flying his plane he said he was going to Bangor.', 
+		       'On the chest of a barmaid from Vail was tattooed all the prices of ale..Whilst on her behind for the sake of the blind was precisely the same but in braille.', 
+		       'A limerick of classic proportion should have meter and rhyme and a portion..of humor quite lewd and a frightfully crude impossible sexual contortion.',
 			   'There once was a fellow McSweeny who spilled some gin on his weenie..Just to be couth he added vermouth then slipped his girlfriend a martini.',
 			   'Twas a crazy old man called Okeef who caused local farmers much grief..To their cows he would run and cut their legs off for fun then say Look I just invented ground beef!',
 			   'Mary had a little pig she kept it fat and plastered..and when the price of pork went up she shot the little bastard.',
-		     'There was once a pirate history relates has was scuffling around with some of his mates..When he slipped on a cutlass which rendered him nutless and practically useless on dates.',
+		       'There was once a pirate history relates has was scuffling around with some of his mates..When he slipped on a cutlass which rendered him nutless and practically useless on dates.',
 			   'To his friend Ned said while blue my wife Edith just told me we are through..she says I am too fat so his friend told him that You can not have your cake and Edith, too.',
 			   'A woman whose clothing was strewed around the beach where she sunbathed nude..Saw a man come along and unless I am quite wrong You expected this line to be lewd.',
 			   'There was a young woman from Crewe who filled her vajayjay with glue..She said with a grin If they pay to get in they must pay to get out again too.',
@@ -42,7 +42,7 @@ limericks = ['There once was a woman named Jill who swallowed an exploding pill.
 			   'A painter who lived in Great Britain interrupted two girls with their knitting..He said with a sigh that park bench uh well I just painted it right where you are sitting.',
 			   'An elderly man called Keith mislaid his set of false teeth..He had laid them in his chair and forgot they were there sat down and was bitten beneath.',
 			   'An amoeba named Max and his brother were sharing a drink with each other... In the midst of their quaffing they split themselves laughing and each of them now is a mother.',
-		     'There once was a girl dating Jerry devoid of her sweet little cherry..certainly not a sin she still had the box it came in which kept them both very merry.'
+		       'There once was a girl dating Jerry devoid of her sweet little cherry..certainly not a sin she still had the box it came in which kept them both very merry.'
 	]
 
 @hook.command("limerick", autohelp=False)
