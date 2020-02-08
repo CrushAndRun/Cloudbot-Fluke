@@ -136,3 +136,21 @@ def wnbaScores(nick, chan, conn, text=" "):
     reply = textwrap.wrap(reply, n, break_long_words=False)
     for i in reply:
         conn.cmd("PRIVMSG " + chan + " :"+i)
+
+@hook.command("xfl", autohelp=False)
+def nflScores(nick, chan, conn, text=" "):
+    """xfl <team> gets the score or next schedule game for the specified team. If no team specified all games will be included."""
+    response = http.get_html('http://scores.espn.go.com/xfl/bottomline/scores', decode=False)
+    game = ""
+    score = response.text_content()
+    raw=score.replace('%20',' ')
+    raw=raw.replace('^','')
+    raw=raw.replace('&','\n')
+    pattern = re.compile("nfl_s_left\d+=(.*)")
+    for match in re.findall(pattern, raw):
+        if text.lower() in match.lower():
+            game = game +  match + "  "
+    reply = "("+nick+")"+game
+    reply = textwrap.wrap(reply, n, break_long_words=False)
+    for i in reply:
+        conn.cmd("PRIVMSG " + chan + " :"+i)
