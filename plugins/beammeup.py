@@ -24,7 +24,7 @@ def beam(text, nick, message):
             "{N} beams {T} over to Qo’noS to make nice with the Klingons.",
             "{N} sends {T} to the Petrifying Lake in Tanzania for a swim.",
             "{N} transports {T} to Slope Point on South Island New Zealand for a blow job."
-			"{N} beams {T} to the Huashan Mountain trail in China for some tea."
+            "{N} beams {T} to the Huashan Mountain trail in China for some tea."
     ];
 
     out = "{}".format(random.choice(beaming))
