@@ -57,7 +57,7 @@ def get_video_description(video_id):
 
     uploader = snippet['channelTitle']
 
-    upload_time = time.strptime(snippet['publishedAt'], "%Y-%m-%dT%H:%M:%S.000Z")
+    upload_time = time.strptime(snippet['publishedAt'], "%Y-%m-%dT%H:%M:%SZ")
     out += ' - \x02{}\x02 on \x02{}\x02'.format(uploader,
                                                 time.strftime("%Y.%m.%d", upload_time))
 
