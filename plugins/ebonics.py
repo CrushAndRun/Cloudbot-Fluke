@@ -41,6 +41,6 @@ myebonics = ['HOTEL - I gave my girlfriend da crabs and the HOTEL everybody.',
 	]
 
 @hook.command("ebonics", autohelp=False)
-def myebonics(message, conn):
+def ebonics(message, conn):
     """Have the bot post a random ebonic phrase."""
     message(random.choice(myebonics))
